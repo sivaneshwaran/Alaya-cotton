@@ -1,0 +1,97 @@
+
+
+.register{
+    height: 110vh!important;
+    background-color: rgb(250, 237, 0);
+}
+
+.error_msg{
+    color: red;
+    font-weight: bold;
+}
+
+#password_input, #cpassword_input{
+    width: 90%;
+    height: 100%;
+    outline: none;
+    border:none;
+    padding:0;
+    margin:0;
+}
+
+.show_pass, .show_cpass{
+    border: none;
+    width: 10%;
+    height: 100%;
+    background-color: transparent;
+    padding:0;
+    margin:0;
+
+}
+
+.login{
+    width: 100%!important;
+    height: 80vh!important;
+    background-color: rgb(52, 52, 52);
+    background-image: url("/Images/Raw images/carousal 3.jpeg");
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-blend-mode: overlay;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.login-form{
+    width: 350px!important;
+    height: 400px!important;
+    background-color: white;
+    overflow: hidden;
+}
+
+.msg{
+    width: 400px!important;
+    height: 50px!important;
+}
+
+.err_msg{
+    color: white;
+    font-weight: 700;
+    background-color: red;
+    padding: 5px 10px 5px 10px;
+    border: 2px solid rgb(164, 2, 2);
+    border-radius: 5px;
+
+}
+
+.success_msg{
+    color: white;
+    font-weight: 700;
+    padding: 5px 10px 5px 10px;
+    background-color: green;
+    border: 2px solid rgb(0, 74, 0);
+    border-radius: 5px;
+}
+
+.phone-login{
+    background-color: rgba(255, 255, 0, 0.3);
+}
+
+.mail-login{
+    background-color: rgba(255, 255, 0, 0.3);
+
+}
+
+@media screen and (max-width: 568px){
+    .register{
+        height: auto!important;
+
+    }
+    .personal-details{
+        border: none!important;
+    }
+
+
+
+}
