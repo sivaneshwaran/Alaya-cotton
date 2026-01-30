@@ -1,9 +1,23 @@
+<?php
+    require_once __DIR__.'\..\config\bootstrap.php';
+    require_once __DIR__.'\..\database\product-database.php';
+    require_once __DIR__.'\..\database\db_connection.php';
+// DB connection to Product Table
+    $db_conn = new db_connection();
+    $pdo = $db_conn->get_connection();
+    $product_db = new product_db($pdo);
+
+    $product_id = htmlspecialchars($_GET['id']);
+    $product = $product_db->getProduct($product_id);
+
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Alaya cotton registeration</title>
+    <title><?php echo $product["product_name"]?></title>
 <!-- Link for Icon -->
     <link rel="icon" href="/./Images/Raw images/fevicon.ico" type="image">
 
@@ -21,6 +35,7 @@
 <!-- Stylesheet link -->
     <link rel="stylesheet" href="/./CSS/style.css">
     <link rel="stylesheet" href="/./CSS/style-register.css">
+    <link rel="stylesheet" href="/./CSS/style-product-view.css">
     
 
 <!-- Fontawsome link for icons -->
@@ -32,78 +47,28 @@
 
 </head>
 <body>
-    <?php
-        require_once __DIR__.'\..\config\bootstrap.php';
-        require_once __DIR__.'\..\database\db_connection.php';
-        require_once __DIR__.'\..\database\user_database.php';
-        require_once __DIR__.'\..\database\session_management.php';
+<?php
 
-
-        $session = new session_management(); 
+    require_once __DIR__.'\..\database\session_management.php';
     
-        $client_name = "";
-        $client_id = "";
-        if($session->checkSession()){
-            $client_name = $_SESSION['user_name'];
-            $client_id = $_SESSION['id'];
-            header("location: \index.php");
+//Sesseion check 
+    $session = new session_management(); 
+
+    $client_name = "";
+    $client_id = "";
+    if($session->checkSession()){
+        $client_name = $_SESSION['user_name'];
+        $client_id = $_SESSION['id'];
+    }
+    if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+        if(isset($_POST["logout"])){
+            $session->logout();
+            header("location: index.php");
             exit;
         }
-        if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-            if(isset($_POST["logout"])){
-                $session->logout();
-                header("location: index.php");
-                exit;
-            }
-        }
-    // Variables for store data
-        $mail_id = $password = "";
+    }
 
-    // Variables for store Error msg
-        $mail_err = $password_err = "";
-
-    // Login status
-        $login_status = false;
-
-        function test_input($data){
-            $data = trim($data);
-            $data = stripslashes($data);
-            $data = htmlspecialchars($data);
-            return $data;
-        }
-
-        $db_conn = new db_connection();
-        $pdo = $db_conn->get_connection();
-        $user_db = new user_database($pdo);
-
-        if($_SERVER["REQUEST_METHOD"] == "POST"){
-            if(empty($_POST['mail-id']) && empty($_POST['password'])){
-                $err_msg = "All fields required";
-            }else{
-                $mail_id = test_input($_POST['mail-id']);
-
-                if(!filter_var($mail_id, FILTER_VALIDATE_EMAIL)){
-                    $err_msg = "Invalid Mail ID";
-                }elseif($user_db->checkMail($mail_id)){
-                    $password = test_input($_POST['password']);
-                    if(empty($password)){
-                        $err_msg = "Enter password";
-                    }elseif($user_db->verifyPasswordMail($mail_id, $password)){
-                        $success_msg = "Login Success....";
-                        $user_data = $user_db->fetchSessionDetails($mail_id);
-                        $session->login($user_data);
-                        unset($_POST);
-                        $login_status = true;
-
-                    }else{
-                        $err_msg = "Invalid User Credentials";
-                    }
-                }else{
-                    $err_msg = "Invalid User Credentials";
-                }
-            }
-        }
-    ?>
+?>
 <!-- Header for Header section  -->
     <header class=" container-fluid bg-white border border-2 border-top-0 border-start-0 border-end-0 border-warning px-0 sticky-top">
     <!-- Main bar Icons and Logo -->
@@ -127,7 +92,7 @@
                 <div class="icon-array col-lg-2 col-md-2 col-sm-2 col-4 d-flex align-items-center justify-content-around">
                 <!-- Account icon -->
                  <div class="account">
-                    <button class="s-btn" data-bs-custom-class="custom-tooltip" data-bs-toggle="tooltip" data-bs-title="Account " data-bs-placement="top" id="account-icon">
+                    <button class="s-btn" data-bs-custom-class="custom-tooltip" data-bs-toggle="tooltip" data-bs-title="Account" data-bs-placement="top" id="account-icon">
                         <i class="fa-solid fa-user"></i>
                         
                     </button>
@@ -183,282 +148,104 @@
                 <div class="col-lg-1 col-md-1 col-sm-1 col-1 d-none d-lg-block ">
 
                 </div>
+            </div>
         </div>
-        </div>
 
+   <!-- Bottom bar for Main menu -->
+        <div class="main-menu container-fluid sticky-top bg-white px-5 d-flex align-items-center justify-content-evenly">
+        <!-- Dropdown list 1 -->
+            <div class="dropdown d-none d-lg-block">
+                <button class="btn btn-light dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+                    <b>DHOTI</b>
+                </button>
+                <ul class="dropdown-menu">
+                    <li><a class="dropdown-item" href="#">Cotton Dhotis</a></li>
+                    <li><a class="dropdown-item" href="#">Tissu Dhotis</a></li>
+                    <li><a class="dropdown-item" href="#">Prayer Dhoti</a></li>
+                </ul>
+            </div>
 
-    </header>
-<!-- Login section  -->
-    <section class="login container-fluid overflow-hidden p-0 d-flex justify-content-center align-items-center flex-column">
-
-                <div class="msg mb-3 d-flex justify-content-center align-items-center ">
-                    <?php echo empty($err_msg)? "":'<span class="err_msg">' .$err_msg .'</span>' ?><!-- Error Msg-->
-                    <?php echo empty($success_msg)? "":'<span class="success_msg">'. $success_msg.'</span>' ?><!-- success Msg-->
-                </div>                        
-
-
-                <form method="POST" action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]);?>"  class="login-form p-0 border border-2 border-secondary rounded-4  d-flex justify-content-center align-items-center">
-                    
+        <!-- Dropdown list 2 -->
+            <div class="dropdown d-none d-lg-block">
+                <button class="btn btn-light dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+                    <b>SHIRTS</b>
+                </button>
+                <ul class="dropdown-menu">
+                    <li><a class="dropdown-item" href="#"><b>Color Shirts</b></a></li>
+                    <li><hr class="dropdown-divider"></li>
+                    <li><a class="dropdown-item" href="#">MC Neo ( Printed )</a></li>
+                    <li><a class="dropdown-item" href="#">Majesty ( Plain )</a></li>
+                    <li><a class="dropdown-item" href="#">Winners Club</a></li>
+                    <li><a class="dropdown-item" href="#">Carnival</a></li>
+                    <li><a class="dropdown-item" href="#">Karna</a></li>
+                </ul>
                 
-                <!-- Email Login --> 
-                    <div class="mail-login container-fluid  h-100">
-                        <h2 class="w-100 text-center ">Login</h2>
-                        <div class="mail-input w-100 mb-2 ">
-                            <label for="mail-id"  class="fw-bold">Mail ID</label>
-                            <input type="text" class="form-control  border border-1 border-secondary" id="mail-id" placeholder="Enter your mail ID" name="mail-id" value=<?php echo isset($_POST["mail-id"])? htmlspecialchars($_POST["mail-id"]):"";?>>
-                        </div>
-                        <div class="pass-input w-100 mb-2 ">
-                            <label for="password" class="fw-bold">Password</label>
-                            <div class="form-control border border-1 border-primary d-flex justify-content-center align-items-center">
-                                <input type="password" class="" autocomplete="off" name="password" id="password_input" placeholder="Enter password"  value="<?php echo isset($_POST['password']) ? htmlspecialchars($_POST['password']):"";?>">
-                                <button class="show_pass" type="button"><i class="fa-solid fa-eye"></i></button>
-                        </div>
-                        </div>
-                        <button class="btn btn-secondary w-100 my-1 "> Login </button>
+            </div>
 
-                        <p class="my-0 w-100 text-center fw-bold">(or)</p>
+        <!-- Dropdown list 3 -->
+            <div class="dropdown d-none d-lg-block">
+                <button class="btn btn-light dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+                    <b>DHOTHI & SHIRTS</b>
+                </button>
+                <ul class="dropdown-menu">
+                    <li><a class="dropdown-item" href="#"><b>Colour Shirt & Dhoti Combo</b></a></li>
+                    <li><hr class="dropdown-divider"></li>
+                    <li><a class="dropdown-item" href="#">MC Neo Combo</a></li>
+                    <li><a class="dropdown-item" href="#">Arima Combo</a></li>
+                    <li><a class="dropdown-item" href="#">Majesty Combo</a></li>
+                    <li><a class="dropdown-item" href="#">Rolex Tissue Combo</a></li>
+                    <li><a class="dropdown-item" href="#">Winners Club Combo</a></li>
+                    <li><a class="dropdown-item" href="#">Carnival Black Combo</a></li>
+                    <li><a class="dropdown-item" href="#">Karna combo</a></li>
 
-                        <p class="my-1 w-100 text-center border border-1 border-secondary border-top-0 border-start-0 border-end-0 pb-2"> Don't have an account <a class="fw-bold " href="register.php">Register here</a></p>
+                </ul>
+            </div>
 
-                        <a href="login-phone.php" type="button" class="btn w-100 btn-success mt-3 phone-btn" id="phone-btn">Login using Phone Number <i class="fa-solid fa-arrows-rotate ms-3" style="color:black"></i></a>
-                    </div>
-                </form>
+        <!-- Dropdown list 4 -->
+            <div class="dropdown d-none d-lg-block">
+                <button class="btn btn-light dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+                    <b>KIDS</b>
+                </button>
+                <ul class="dropdown-menu ">
+                    <li><a class="dropdown-item" href="#"><b>Dhoti & Shirt</b></a></li>
+                    <li><hr class="dropdown-divider"></li>
+                    <li><a class="dropdown-item" href="#">BTS Tissue Dhoti Combo</a></li>
+                    <li><a class="dropdown-item" href="#">Kids Kondattam Set</a></li>
+                    <li><a class="dropdown-item" href="#">Veera Soora</a></li>
+                    <li><a class="dropdown-item" href="#">Match & Catch Junior</a></li>
+                    <li><a class="dropdown-item" href="#">Go Trendy ( Kurtha Set ) Cream</a></li>
+                </ul>
+            </div>
+
+        <!-- Dropdown list 5 -->
+            <div class="dropdown d-none d-lg-block">
+                <button class="btn btn-light dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+                    <b>WEDDING COLLECTION</b>
+                </button>
+                <ul class="dropdown-menu">
+                    <li><a class="dropdown-item" href="#">Readymade</a></li>
+                </ul>
+            </div>
+
+        <!-- Dropdown list 6 -->
+            <div class="dropdown d-none d-lg-block">
+                <button class="btn btn-light dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+                    <b>ACCESSORIES</b>
+                </button>
+                <ul class="dropdown-menu ">
+                    <li><a class="dropdown-item" href="#">Dhoti Belt</a></li>
+                    <li><a class="dropdown-item" href="#">Hand Kerchief</a></li>
+                    <li><a class="dropdown-item" href="#">Cradle Dhoti For Born Baby Kids</a></li>
+                    <li><a class="dropdown-item" href="#">Towel</a></li>
+                </ul>
+            </div>
+
+        </div>
+    </header>
+<!-- Section for Product -->
+    <section class="product">
+
     </section>
-
-
-<!-- Section 6 for row of images cart  -->
-    <section class="container-fluid pt-5">
-    <!-- Overall row -->
-     <h3 class="container w-100 p-3 text-center"> 
-        Recommanded deals
-     </h3>
-     <div class="row d-flex justify-content-center">
-
-    <!-- Item 1 -->
-        <div class="col-xl-2 col-lg-2 col-md-3 col-sm-3 col-6  ">
-        <!-- Image 1 -->
-            <div class="images d-flex flex-column align-items-center">
-                <img src="/Images/Raw images/Kgf1-top.webp" alt="" class="img-top img-fluid">
-                <img src="/Images/Raw images/Kgf1-under.webp" alt="" class="img-under img-fluid">
-            
-            <!-- Icon set div -->
-                <div class="icon-set ">  
-                    <span class="icon-1">
-                        <i class="fa-solid fa-heart "></i>
-                    </span>
-                    <span class="icon-2">
-                        <i class="fa-solid fa-cart-shopping"></i>
-                    </span>
-                    <span class="icon-3">
-                        <i class="fa-solid fa-eye"></i>
-                    </span>
-                    
-                </div><!-- Icon set div is ends here -->
-            </div>
-                    
-
-            <!-- Div for information -->
-                <div class="info">
-                    <p><b>Kondattam Tissue Shirt & Dhoti Set- Gold</b></p>
-                    <p>
-                        <i class="fa-solid fa-star text-warning"></i>
-                        <i class="fa-solid fa-star text-warning"></i>
-                        <i class="fa-solid fa-star text-warning"></i>
-                        <i class="fa-solid fa-star text-warning"></i>
-                        <i class="fa-solid fa-star text-warning"></i>
-                        <span>1 review  | <span><i class="fa-solid fa-comments"></i> 1 question</span></span>
-                    </p>
-                    <p>Rs. 1,500.00</p>
-                </div>
-        </div><!-- Item 1 ends here -->
-    <!-- Item 2 -->
-        <div class="col-xl-2 col-lg-2 col-md-3 col-sm-3 col-6 ">
-        <!-- Image 2 -->
-            <div class="images d-flex flex-column align-items-center">
-                <img src="/Images/Raw images/Kgf2-top.webp" alt="" class="img-top img-fluid">
-                <img src="/Images/Raw images/Kgf2-under.webp" alt="" class="img-under img-fluid">
-
-            <!-- Icon set div -->
-                <div class="icon-set ">  
-                    <span class="icon-1">
-                        <i class="fa-solid fa-heart "></i>
-                    </span>
-                    <span class="icon-2">
-                        <i class="fa-solid fa-cart-shopping"></i>
-                    </span>
-                    <span class="icon-3">
-                        <i class="fa-solid fa-eye"></i>
-                    </span>
-                    
-                </div><!-- Icon set div is ends here -->
-            </div>
-        
-
-        <!-- Div for information -->
-            <div class="info">
-                <p><b>Kondattam Tissue Shirt & Dhoti Set- Copper</b></p>
-                <!-- <p>
-                    <i class="fa-solid fa-star text-warning"></i>
-                    <i class="fa-solid fa-star text-warning"></i>
-                    <i class="fa-solid fa-star text-warning"></i>
-                    <i class="fa-solid fa-star text-warning"></i>
-                    <i class="fa-solid fa-star text-warning"></i>
-                    <span>1 review  | <span><i class="fa-solid fa-comments"></i> 1 question</span></span>
-                </p> -->
-                <p>Rs. 1,500.00</p>
-            </div>
-        </div><!-- Item 2 ends here -->
-    <!-- Item 3 -->
-        <div class="col-xl-2 col-lg-2 col-md-3 col-sm-3 col-xs-6 d-none d-md-block ">
-        <!-- Image 4 -->
-            <div class="images d-flex flex-column align-items-center">
-                <img src="/Images/Raw images/Kgf4-top.webp" alt="" class="img-top img-fluid">
-                <img src="/Images/Raw images/Kgf4-under.webp" alt="" class="img-under img-fluid">
-
-            <!-- Icon set div -->
-                <div class="icon-set ">  
-                    <span class="icon-1">
-                        <i class="fa-solid fa-heart "></i>
-                    </span>
-                    <span class="icon-2">
-                        <i class="fa-solid fa-cart-shopping"></i>
-                    </span>
-                    <span class="icon-3">
-                        <i class="fa-solid fa-eye"></i>
-                    </span>
-                    
-                </div><!-- Icon set div is ends here -->
-            </div>
-        
-        
-        <!-- Div for information -->
-            <div class="info">
-                <p><b>Kondattam Tissue Shirt & Dhoti Set- Green</b></p>
-                <p>
-                    <i class="fa-solid fa-star text-warning"></i>
-                    <i class="fa-solid fa-star text-warning"></i>
-                    <i class="fa-solid fa-star text-warning"></i>
-                    <i class="fa-solid fa-star text-warning"></i>
-                    <i class="fa-regular fa-star text-warning"></i>
-                    <span>1 review  | <span><i class="fa-solid fa-comments"></i> 1 question</span></span>
-                </p>
-                <p>Rs. 1,575.00</p>
-            </div>
-        </div><!-- Item 3 ends here -->
-    <!-- Item 4 -->
-        <div class="col-xl-2 col-lg-2 col-md-3 col-sm-3 col-xs-6 d-none d-md-block ">
-         <!-- Image 3 -->
-            <div class="images d-flex flex-column align-items-center">
-                <img src="/Images/Raw images/Kgf3-top.webp" alt="" class="img-top img-fluid">
-                <img src="/Images/Raw images/Kgf3-under.webp" alt="" class="img-under img-fluid">
-
-            <!-- Icon set div -->
-                <div class="icon-set ">  
-                    <span class="icon-1">
-                        <i class="fa-solid fa-heart "></i>
-                    </span>
-                    <span class="icon-2">
-                        <i class="fa-solid fa-cart-shopping"></i>
-                    </span>
-                    <span class="icon-3">
-                        <i class="fa-solid fa-eye"></i>
-                    </span>
-                    
-                </div><!-- Icon set div is ends here -->
-            </div>
-        
-        
-        <!-- Div for information -->
-            <div class="info">
-                <p><b>Kondattam Tissue Shirt & Dhoti Set- Blue</b></p>
-                <!-- <p>
-                    <i class="fa-solid fa-star text-warning"></i>
-                    <i class="fa-solid fa-star text-warning"></i>
-                    <i class="fa-solid fa-star text-warning"></i>
-                    <i class="fa-solid fa-star text-warning"></i>
-                    <i class="fa-solid fa-star text-warning"></i>
-                    <span>1 review  | <span><i class="fa-solid fa-comments"></i> 1 question</span></span>
-                </p> -->
-                <p>Rs. 1,575.00</p>
-            </div>   
-        </div><!-- Item 4 ends here -->
-    <!-- Item 5 -->
-        <div class="col-xl-2 col-lg-2  d-none d-md-none d-xl-block d-lg-block ">
-        <!-- Image 5 -->
-            <div class="images d-flex flex-column align-items-center">
-                <img src="/Images/Raw images/dothi 1 top.webp" alt="" class="img-top img-fluid">
-                <img src="/Images/Raw images/dothi 1.jpg" alt="" class="img-under img-fluid">
-
-            <!-- Icon set div -->
-                <div class="icon-set ">  
-                    <span class="icon-1">
-                        <i class="fa-solid fa-heart "></i>
-                    </span>
-                    <span class="icon-2">
-                        <i class="fa-solid fa-cart-shopping"></i>
-                    </span>
-                    <span class="icon-3">
-                        <i class="fa-solid fa-eye"></i>
-                    </span>
-                    
-                </div><!-- Icon set div is ends here -->
-            </div>
-        
-        
-        <!-- Div for information -->
-            <div class="info">
-                <p><b>Cotton Dhoti Set - Wide Gold</b></p>
-                <p>
-                    <i class="fa-solid fa-star text-warning"></i>
-                    <i class="fa-solid fa-star text-warning"></i>
-                    <i class="fa-solid fa-star text-warning"></i>
-                    <i class="fa-solid fa-star text-warning"></i>
-                    <i class="fa-regular fa-star text-warning"></i>
-                    <span>1 review  | <span><i class="fa-solid fa-comments"></i> 1 question</span></span>
-                </p>
-                <p>Rs. 1,575.00</p>
-            </div>
-        </div><!-- Item 5 ends here -->
-    <!-- Item 6 --> 
-        <div class="col-xl-2 col-lg-2  d-none d-md-none d-xl-block d-lg-block">
-        <!-- Image 6 -->
-            <div class="images d-flex flex-column align-items-center">
-                <img src="/Images/Raw images/dothi 2 top.webp" alt="" class="img-top img-fluid">
-                <img src="/Images/Raw images/dothi 2.jpg" alt="" class="img-under img-fluid">
-
-            <!-- Icon set div -->
-                <div class="icon-set ">  
-                    <span class="icon-1">
-                        <i class="fa-solid fa-heart "></i>
-                    </span>
-                    <span class="icon-2">
-                        <i class="fa-solid fa-cart-shopping"></i>
-                    </span>
-                    <span class="icon-3">
-                        <i class="fa-solid fa-eye"></i>
-                    </span>
-                    
-                </div><!-- Icon set div is ends here -->
-            </div>
-        
-        
-        <!-- Div for information -->
-            <div class="info">
-                <p><b>Cotton Dhoti Set -Line Gold</b></p>
-                <p>
-                    <i class="fa-solid fa-star text-warning"></i>
-                    <i class="fa-solid fa-star text-warning"></i>
-                    <i class="fa-solid fa-star text-warning"></i>
-                    <i class="fa-solid fa-star text-warning"></i>
-                    <i class="fa-regular fa-star text-warning"></i>
-                    <span>1 review  | <span><i class="fa-solid fa-comments"></i> 1 question</span></span>
-                </p>
-                <p>Rs. 1,575.00</p>
-            </div>
-        </div><!-- Item 6 ends here -->
-     </div>
-    </section>
-
 
 <!-- Footer for footer section  -->
     <footer class="footer container-fluid">
@@ -744,22 +531,8 @@
         <div class="row">
         </div><!-- Second row for footer ends here-->   
     </footer>
-    
+
 <!-- Script for custom script file -->
-    <script src="/JS/script.js"></script>
-    <script src="/JS/script-register.js"></script>
-
-<script>
-  window.onload = function() {
-    document.getElementById("login-form").reset();
-  };
-  if(<?php echo $login_status ?>){
-    setTimeout(() => {
-        window.location.replace("/index.php");
-
-    }, 1000);
-  }
-</script>
-
+    <script src="\..\JS\script.js"></script>
 </body>
 </html>

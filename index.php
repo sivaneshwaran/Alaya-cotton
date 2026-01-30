@@ -62,7 +62,7 @@
     </div>
 
 <!-- Header for Header section  -->
-    <header class=" container-fluid px-0 sticky-top">
+    <header class="container-fluid px-0 sticky-top">
     <!-- Main bar Icons and Logo -->
         <div class="container-fluid ">
             <div class="main-bar row ">
@@ -143,7 +143,7 @@
                 <div class="col-lg-1 col-md-1 col-sm-1 col-1 d-none d-lg-block ">
 
                 </div>
-        </div>
+            </div>
         </div>
 
     <!-- Bottom bar for Main menu -->
@@ -403,8 +403,8 @@
                     <div class="col-6 img-col d-flex flex-column align-items-center">
                     <!-- Image 1 -->
                         <div class="images d-flex flex-column align-items-center">
-                            <img src="Images/Raw images/Kgf1-top.webp" alt="" class="img-top img-fluid">
-                            <img src="Images/Raw images/Kgf1-under.webp" alt="" class="img-under img-fluid">
+                            <img src="Images/product-images/copper shirt/copper shirt 1.png" alt="Alaya cotton shirt" class="img-top img-fluid">
+                            <img src="Images/product-images/copper shirt/copper shirt 2.png" alt="Alaya cotton shirt" class="img-under img-fluid">
 
                         <!-- Icon set div -->
                             <div class="icon-set ">  
@@ -415,7 +415,7 @@
                                     <i class="fa-solid fa-cart-shopping"></i>
                                 </span>
                                 <span class="icon-3">
-                                    <i class="fa-solid fa-eye"></i>
+                                    <a href="public\product-view.php?id=1"><i class="fa-solid fa-eye"></i></a>
                                 </span>
                                 
                             </div><!-- Icon set div is ends here -->
@@ -424,7 +424,7 @@
 
                     <!-- Div for information -->
                         <div class="info">
-                            <p><b>Kondattam Tissue Shirt & Dhoti Set- Gold</b></p>
+                            <p><b>Kondattam Copper Tissue Shirt & Gold Jari Border Dhoti Set</b></p>
                             <p>
                                 <i class="fa-solid fa-star text-warning"></i>
                                 <i class="fa-solid fa-star text-warning"></i>
@@ -442,8 +442,8 @@
                     <div class="col-6 img-col d-flex flex-column align-items-center">
                     <!-- Image 2 -->
                         <div class="images d-flex flex-column align-items-center">
-                            <img src="Images/Raw images/Kgf2-top.webp" alt="" class="img-top img-fluid">
-                            <img src="Images/Raw images/Kgf2-under.webp" alt="" class="img-under img-fluid">
+                            <img src="Images/product-images/gold border shirt/gold shirt 1.png" alt="Alaya cotton gold shirt" class="img-top img-fluid">
+                            <img src="Images/product-images/gold border shirt/gold shirt 2.png" alt="Alaya cotton gold shirt" class="img-under img-fluid">
 
                         <!-- Icon set div -->
                             <div class="icon-set ">  
@@ -454,7 +454,7 @@
                                     <i class="fa-solid fa-cart-shopping"></i>
                                 </span>
                                 <span class="icon-3">
-                                    <i class="fa-solid fa-eye"></i>
+                                    <a href="public\product-view.php?id=2"><i class="fa-solid fa-eye"></i></a>                                    
                                 </span>
                                 
                             </div><!-- Icon set div is ends here -->
@@ -483,8 +483,8 @@
                     <div class="col-6 img-col d-flex flex-column align-items-center">
                     <!-- Image 3 -->
                         <div class="images d-flex flex-column align-items-center">
-                            <img src="Images/Raw images/Kgf3-top.webp" alt="" class="img-top img-fluid">
-                            <img src="Images/Raw images/Kgf3-under.webp" alt="" class="img-under img-fluid">
+                            <img src="Images/product-images/silver shirt/silver shirt 1.png" alt="Alaya cotton silver shirt" class="img-top img-fluid">
+                            <img src="Images/product-images/silver shirt/silver shirt 2.png" alt="Alaya cotton silver shirt" class="img-under img-fluid">
 
                         <!-- Icon set div -->
                             <div class="icon-set ">  
@@ -495,7 +495,7 @@
                                     <i class="fa-solid fa-cart-shopping"></i>
                                 </span>
                                 <span class="icon-3">
-                                    <i class="fa-solid fa-eye"></i>
+                                    <a href="public\product-view.php?id=3"><i class="fa-solid fa-eye"></i></a>
                                 </span>
                                 
                             </div><!-- Icon set div is ends here -->
@@ -504,7 +504,7 @@
                     
                     <!-- Div for information -->
                         <div class="info">
-                            <p><b>Kondattam Tissue Shirt & Dhoti Set- Blue</b></p>
+                            <p><b>Kondattam Silver Tissue Shirt & Gold Jari Border Dhoti Set</b></p>
                             <!-- <p>
                                 <i class="fa-solid fa-star text-warning"></i>
                                 <i class="fa-solid fa-star text-warning"></i>
@@ -522,8 +522,8 @@
                     <div class="col-6 img-col d-flex flex-column align-items-center">
                     <!-- Image 4 -->
                         <div class="images d-flex flex-column align-items-center">
-                            <img src="Images/Raw images/Kgf4-top.webp" alt="" class="img-top img-fluid">
-                            <img src="Images/Raw images/Kgf4-under.webp" alt="" class="img-under img-fluid">
+                            <img src="Images/product-images/blue shirt/blue shirt 1.png" alt="Alaya cotton blue shirt" class="img-top img-fluid">
+                            <img src="Images/product-images/blue shirt/blue shirt 2.png" alt="Alaya cotton blue shirt" class="img-under img-fluid">
 
                         <!-- Icon set div -->
                             <div class="icon-set ">  
@@ -534,7 +534,8 @@
                                     <i class="fa-solid fa-cart-shopping"></i>
                                 </span>
                                 <span class="icon-3">
-                                    <i class="fa-solid fa-eye"></i>
+                                    <a href="public/product-view.php?id=4"><i class="fa-solid fa-eye"></i></a>
+                                    
                                 </span>
                                 
                             </div><!-- Icon set div is ends here -->
@@ -543,7 +544,7 @@
                     
                     <!-- Div for information -->
                         <div class="info">
-                            <p><b>Kondattam Tissue Shirt & Dhoti Set- Green</b></p>
+                            <p><b>Kondattam Grand Tissue Shirt & Dhoti Combo - Blue Hosta</b></p>
                             <p>
                                 <i class="fa-solid fa-star text-warning"></i>
                                 <i class="fa-solid fa-star text-warning"></i>

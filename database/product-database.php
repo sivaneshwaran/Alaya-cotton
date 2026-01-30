@@ -44,11 +44,11 @@ class product_db{
                 ':staff_name' => $staff_name,
                 ':staff_id' => $staff_id
             ]);
-        echo "<script> console.log('after execute')</script>";
+        // echo "<script> console.log('after execute')</script>";
 
             return true;    
         }catch(PDOException $e){
-        echo "<script> console.log('Error')</script>";
+        // echo "<script> console.log('Error')</script>";
             $this->pdo_error;
             echo $e->getMessage();
             
@@ -56,6 +56,24 @@ class product_db{
         }
         
     }
+
+// Get Product with ID
+    public function getProduct($product_id){
+        try{
+            $product_id = $product_id;
+            $query = "SELECT * FROM product_info WHERE product_id=:id LIMIT 1";
+            $statement = $this->pdo->prepare($query);
+            $statement->execute([
+                ":id" => $product_id
+            ]);
+            return $statement->fetch();
+        }catch(PDOException $e){
+            $this->pdo_error;
+            $e->getMessage();
+            return null;
+        }  
+    }
+
 
 }
 
