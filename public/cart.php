@@ -1,23 +1,9 @@
-<?php
-    require_once __DIR__.'\..\config\bootstrap.php';
-    require_once __DIR__.'\..\database\product-database.php';
-    require_once __DIR__.'\..\database\db_connection.php';
-// DB connection to Product Table
-    $db_conn = new db_connection();
-    $pdo = $db_conn->get_connection();
-    $product_db = new product_db($pdo);
-
-    $product_id = htmlspecialchars($_GET['id']);
-    $product = $product_db->getProduct($product_id);
-
-?>
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title><?php echo $product["product_name"]?></title>
+    <title>Alaya Cotton Shopping Cart</title>
 <!-- Link for Icon -->
     <link rel="icon" href="/./Images/Raw images/fevicon.ico" type="image">
 
@@ -69,6 +55,7 @@
     }
 
 ?>
+
 <!-- Header for Header section  -->
     <header class=" container-fluid bg-white border border-2 border-top-0 border-start-0 border-end-0 border-warning px-0 sticky-top">
     <!-- Main bar Icons and Logo -->
@@ -92,7 +79,7 @@
                 <div class="icon-array col-lg-2 col-md-2 col-sm-2 col-4 d-flex align-items-center justify-content-around">
                 <!-- Account icon -->
                  <div class="account">
-                    <button class="s-btn" data-bs-custom-class="custom-tooltip" data-bs-toggle="tooltip" data-bs-title="Account" data-bs-placement="top" id="account-icon">
+                    <button class="s-btn" data-bs-custom-class="custom-tooltip" data-bs-toggle="tooltip" data-bs-title="Account " data-bs-placement="top" id="account-icon">
                         <i class="fa-solid fa-user"></i>
                         
                     </button>
@@ -148,206 +135,15 @@
                 <div class="col-lg-1 col-md-1 col-sm-1 col-1 d-none d-lg-block ">
 
                 </div>
-            </div>
         </div>
-
-   <!-- Bottom bar for Main menu -->
-        <div class="main-menu container-fluid sticky-top bg-white px-5 d-flex align-items-center justify-content-evenly">
-        <!-- Dropdown list 1 -->
-            <div class="dropdown d-none d-lg-block">
-                <button class="btn btn-light dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
-                    <b>DHOTI</b>
-                </button>
-                <ul class="dropdown-menu">
-                    <li><a class="dropdown-item" href="#">Cotton Dhotis</a></li>
-                    <li><a class="dropdown-item" href="#">Tissu Dhotis</a></li>
-                    <li><a class="dropdown-item" href="#">Prayer Dhoti</a></li>
-                </ul>
-            </div>
-
-        <!-- Dropdown list 2 -->
-            <div class="dropdown d-none d-lg-block">
-                <button class="btn btn-light dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
-                    <b>SHIRTS</b>
-                </button>
-                <ul class="dropdown-menu">
-                    <li><a class="dropdown-item" href="#"><b>Color Shirts</b></a></li>
-                    <li><hr class="dropdown-divider"></li>
-                    <li><a class="dropdown-item" href="#">MC Neo ( Printed )</a></li>
-                    <li><a class="dropdown-item" href="#">Majesty ( Plain )</a></li>
-                    <li><a class="dropdown-item" href="#">Winners Club</a></li>
-                    <li><a class="dropdown-item" href="#">Carnival</a></li>
-                    <li><a class="dropdown-item" href="#">Karna</a></li>
-                </ul>
-                
-            </div>
-
-        <!-- Dropdown list 3 -->
-            <div class="dropdown d-none d-lg-block">
-                <button class="btn btn-light dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
-                    <b>DHOTHI & SHIRTS</b>
-                </button>
-                <ul class="dropdown-menu">
-                    <li><a class="dropdown-item" href="#"><b>Colour Shirt & Dhoti Combo</b></a></li>
-                    <li><hr class="dropdown-divider"></li>
-                    <li><a class="dropdown-item" href="#">MC Neo Combo</a></li>
-                    <li><a class="dropdown-item" href="#">Arima Combo</a></li>
-                    <li><a class="dropdown-item" href="#">Majesty Combo</a></li>
-                    <li><a class="dropdown-item" href="#">Rolex Tissue Combo</a></li>
-                    <li><a class="dropdown-item" href="#">Winners Club Combo</a></li>
-                    <li><a class="dropdown-item" href="#">Carnival Black Combo</a></li>
-                    <li><a class="dropdown-item" href="#">Karna combo</a></li>
-
-                </ul>
-            </div>
-
-        <!-- Dropdown list 4 -->
-            <div class="dropdown d-none d-lg-block">
-                <button class="btn btn-light dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
-                    <b>KIDS</b>
-                </button>
-                <ul class="dropdown-menu ">
-                    <li><a class="dropdown-item" href="#"><b>Dhoti & Shirt</b></a></li>
-                    <li><hr class="dropdown-divider"></li>
-                    <li><a class="dropdown-item" href="#">BTS Tissue Dhoti Combo</a></li>
-                    <li><a class="dropdown-item" href="#">Kids Kondattam Set</a></li>
-                    <li><a class="dropdown-item" href="#">Veera Soora</a></li>
-                    <li><a class="dropdown-item" href="#">Match & Catch Junior</a></li>
-                    <li><a class="dropdown-item" href="#">Go Trendy ( Kurtha Set ) Cream</a></li>
-                </ul>
-            </div>
-
-        <!-- Dropdown list 5 -->
-            <div class="dropdown d-none d-lg-block">
-                <button class="btn btn-light dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
-                    <b>WEDDING COLLECTION</b>
-                </button>
-                <ul class="dropdown-menu">
-                    <li><a class="dropdown-item" href="#">Readymade</a></li>
-                </ul>
-            </div>
-
-        <!-- Dropdown list 6 -->
-            <div class="dropdown d-none d-lg-block">
-                <button class="btn btn-light dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
-                    <b>ACCESSORIES</b>
-                </button>
-                <ul class="dropdown-menu ">
-                    <li><a class="dropdown-item" href="#">Dhoti Belt</a></li>
-                    <li><a class="dropdown-item" href="#">Hand Kerchief</a></li>
-                    <li><a class="dropdown-item" href="#">Cradle Dhoti For Born Baby Kids</a></li>
-                    <li><a class="dropdown-item" href="#">Towel</a></li>
-                </ul>
-            </div>
-
         </div>
     </header>
-<!-- Section for Product -->
-    <section class="product">
-        <div class="container-fluid">
-            <div class="row">
-            <!-- Product Image Column -->
-                <div class="product-img col-xl-6 col-lg-6 col-md-6 col-sm-12 col-12">
-                    <div class="row px-2">
-                    <!-- Images thumbnails -->
-                        <div class="thumbnails col-xl-2 col-lg-2 col-md-2 col-sm-2 col-2  ">
-                            <div class="img-tile d-flex justify-content-center align-items-center">
-                                <button class="img-btn">
-                                    <img src="/./product-images/<?php echo $product["img1_uniqname"]; ?>" alt="Alaya cotton shirt">
-                                </button>
-                            </div>
-                            <div class="img-tile d-flex justify-content-center align-items-center">
-                                <button class="img-btn">
-                                    <img src="/./product-images/<?php echo $product["img2_uniqname"]; ?>" alt="Alaya cotton shirt">
-                                </button>
-                            </div>
-                            <div class="img-tile d-flex justify-content-center align-items-center">
-                                <button class="img-btn">
-                                    <img src="/./product-images/<?php echo $product["img3_uniqname"]; ?>" alt="Alaya cotton shirt">
-                                </button>
-                            </div>
-                            <div class="img-tile d-flex justify-content-center align-items-center">
-                                <button class="img-btn">
-                                    <img src="/./product-images/<?php echo $product["img4_uniqname"]; ?>" alt="Alaya cotton shirt">
-                                </button>
-                            </div>
-                            <div class="img-tile d-flex justify-content-center align-items-center">
-                                <button class="img-btn">
-                                    <img src="/./product-images/<?php echo $product["img5_uniqname"]; ?>" alt="Alaya cotton shirt">
-                                </button>
-                            </div>                                                                                    
-                        </div>
-                    <!-- Main Image -->
-                        <div class="img-box col-xl-10 col-lg-10 col-md-10 col-sm-10 col-10 d-flex justify-content-center align-items-center ">
-                            <img class="main-img" src="/./product-images/<?php echo $product["img1_uniqname"]; ?>" alt="Alaya cotton shirts">
-                        </div>
-                    </div>
 
-                </div>
+<!-- Shopping Cart heading-->
+<h1 class="container-fluid text-center p-3">Alaya cotton Shopping Cart</h1>
 
-            <!-- Product Details column -->
-                <div class="product-details col-xl-6 col-lg-6 col-md-6 col-sm-12 col-12 py-4">
-                <!-- Product Name -->
-                    <h3 class="my-3">
-                        <?php echo $product["product_name"];?>
-                    </h3>
+<!-- Shopping cart items -->
 
-                    <p class="fw-bold fs-4 text-danger my-3">
-                        Rs. <?php echo $product["sell_price"];?>/-
-                    </p>
-
-                    <hr>
-                <!-- Product description -->
-                    <p class="my-3 ">
-                        <?php echo $product["product_description"];?>
-                    </p>
-
-                <!-- Size Guide button -->
-                    <div class="container px-0 py-3">
-                        <button class="btn btn-warning focus-ring focus-ring-warning fw-semibold">Size Guide</button>
-                    </div>
-
-                <!-- Product size -->
-                    <h5 class="mt-3">size</h5>
-                    <div class="container gap-3 d-flex justify-content-start align-items-center py-2 px-0">
-                    <!-- Check Box for "S" -->
-                        <input type="radio" id="s-check" class="btn-check" value="s" name="size" checked>
-                        <label for="s-check" class="btn btn-outline-dark">S</label>
-                    <!-- Check Box for "M" -->
-                        <input type="radio" id="m-check" class="btn-check" value="m" name="size">
-                        <label for="m-check" class="btn btn-outline-dark">M</label>
-                    <!-- Check Box for "L" -->
-                        <input type="radio" id="l-check" class="btn-check" value="l" name="size">
-                        <label for="l-check" class="btn btn-outline-dark">L</label>
-                    <!-- Check Box for "XL" -->
-                        <input type="radio" id="xl-check" class="btn-check" value="xl" name="size">
-                        <label for="xl-check" class="btn btn-outline-dark">XL</label>
-                    <!-- Check Box for "XXL" -->
-                        <input type="radio" id="xxl-check" class="btn-check" value="xxl" name="size">
-                        <label for="xxl-check" class="btn btn-outline-dark">XXL</label>                           
-                    </div>
-
-                <!-- Product sleeve type -->
-                    <h5 class="mt-3">Sleeve</h5>
-                    <div class="container gap-3 d-flex justify-content-start align-items-center py-2 px-0">
-                    <!-- Check Box for "Full Sleeve" -->
-                        <input type="radio" id="fullsleeve" class="btn-check" value="fullsleeve" name="sleeve" checked>
-                        <label for="fullsleeve" class="btn btn-outline-dark">Full Sleeve</label>
-                    <!-- Check Box for "Half Sleeve" -->
-                        <input type="radio" id="halfsleeve" class="btn-check" value="halfsleeve" name="sleeve">
-                        <label for="halfsleeve" class="btn btn-outline-dark">Half Sleeve</label>
-                    </div>
-
-                <!-- Product Add to cart and Buy button -->
-                    <div class="container p-3 my-3 d-flex align-items-center justify-content-center gap-4 border border-2 border-start-0 border-end-0 ">
-                        <button class="addcart btn btn-danger focus-ring focus-ring-danger w-50">Add to Cart</button>
-                        <button class="buy btn btn-success focus-ring focus-ring-success w-50">Buy Now</button>
-                    </div>
-
-                </div>
-            </div>
-        </div>
-    </section>
 
 <!-- Footer for footer section  -->
     <footer class="footer container-fluid">
@@ -634,19 +430,7 @@
         </div><!-- Second row for footer ends here-->   
     </footer>
 
-<!-- Script for custom script file -->
-    <script src="\..\JS\script.js"></script>
-    <script>
-        const img_btn = document.querySelector(".img-btn");
-        const main_img = document.querySelector(".main-img");
-        function getSrc(event){
-            var child = event.firstElementChild;
-            var source = child.getAttribute("src");
-            main_img.setAttribute("src", source);
-            console.log("click");
-        }
+<script src="\..\JS\script.js"></script>
 
-        img_btn.addEventListener("click", getSrc);
-    </script>
 </body>
 </html>

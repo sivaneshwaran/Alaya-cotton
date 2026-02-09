@@ -133,7 +133,7 @@
                     </a>
 
                 <!-- Cart icon -->
-                    <a href="" class="s-btn card" data-bs-custom-class="custom-tooltip" data-bs-toggle="tooltip" data-bs-title="card " data-bs-placement="top">
+                    <a href="public/cart.php" class="s-btn card" data-bs-custom-class="custom-tooltip" data-bs-toggle="tooltip" data-bs-title="cart" data-bs-placement="top">
                        <i class="fa-solid fa-cart-shopping"></i>
                     </a>
                    
