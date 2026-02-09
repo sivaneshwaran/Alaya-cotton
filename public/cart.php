@@ -94,7 +94,7 @@
                                         <li class="my-2">
                                             <p class="m-0 fw-bold text-success">'.$client_name.'</p>
                                         </li>
-                                        <li class="my-2"> <a href="" class="btn py-0 px-4 border border-2 border-secondary">View Profile</a> </li>
+                                        <li class="my-2"> <a href="profile.php" class="btn py-0 px-4 border border-2 border-secondary">View Profile</a> </li>
                                         <li class="mt-2 border border-1 border-secondary border-start-0 border-end-0 border-bottom-0 pt-2" >
                                             <form action="" method="POST"> 
                                                 <button class="btn btn-warning fw-bold" name="logout" >Logout</button>
@@ -120,15 +120,9 @@
                     
 
                 <!-- Wishlist icon -->
-                    <a href="" class="s-btn " data-bs-custom-class="custom-tooltip" data-bs-toggle="tooltip" data-bs-title="Wishlist " data-bs-placement="top" >
+                    <a href="wishlist.php" class="s-btn " data-bs-custom-class="custom-tooltip" data-bs-toggle="tooltip" data-bs-title="Wishlist" data-bs-placement="top" >
                         <i class="fa-solid fa-heart"></i>
-                    </a>
-
-                <!-- Cart icon -->
-                    <a href="" class="s-btn " data-bs-custom-class="custom-tooltip" data-bs-toggle="tooltip" data-bs-title="card " data-bs-placement="top">
-                       <i class="fa-solid fa-cart-shopping"></i>
-                    </a>
-                   
+                    </a>                   
                 </div>
 
             <!-- column for empty space -->
@@ -143,7 +137,44 @@
 <h1 class="container-fluid text-center p-3">Alaya cotton Shopping Cart</h1>
 
 <!-- Shopping cart items -->
-
+<div class="container-fluid bg-light p-3">
+    <div class="container bg-white shadow px-5">
+    <!-- Cart Item -->
+        <div class="cart-item row py-3 px-0 border border-2 border-top-0 border-start-0 border-end-0">
+            <div class="col-xl-3 col-lg-3 col-md-3 col-sm-4 col-4 d-flex justify-content-center align-items-center">
+                <img src="/./Images/product-images/blue shirt/blue shirt 1.png" alt="Alaya cotton shirts" class="img-fluid" width="150px">
+            </div>
+            <div class="col-xl-9 col-lg-9 col-md-9 col-sm-8 col-8">
+                <p class="fs-4 fw-semibold my-1">Kondattam Copper Fancy Tissue Shirt & Dhoti Set</p>
+                <p class="text-success my-1">In stock</p>
+                <p class="mb-0">Quantity</p>
+                <div class="border rounded-2 border-2 border-warning d-flex justify-content-between align-items-center overflow-hidden p-1 "  style="width:10%!important; min-width:100px!important;">
+                    <button class="btn border rounded-0 border-warning border-2 border-top-0 border-start-0 border-bottom-0 px-2 m-0 py-0">-</button>
+                    <span>1</span>
+                    <button class="btn border rounded-0 border-warning border-2 border-top-0 border-end-0 border-bottom-0 px-2 m-0 py-0">+</button>
+                </div> 
+                <button class="btn border border-dark border-2 text-dark mt-1 px-3 py-0">Delete</button>
+            </div>
+        </div>
+    <!-- Cart Item -->
+        <div class="cart-item row p-3 border border-2 border-top-0 border-start-0 border-end-0">
+            <div class="col-xl-3 col-lg-3 col-md-3 col-sm-3 col-3 d-flex justify-content-center align-items-center">
+                <img src="/./Images/product-images/blue shirt/blue shirt 1.png" alt="Alaya cotton shirts" class="img-fluid" width="150px">
+            </div>
+            <div class="col-xl-9 col-lg-9 col-md-9 col-sm-9 col-9">
+                <p class="fs-4 fw-semibold my-1">Kondattam Copper Fancy Tissue Shirt & Dhoti Set</p>
+                <p class="text-success my-1">In stock</p>
+                <p class="mb-0">Quantity</p>
+                <div class="border rounded-2 border-2 border-warning d-flex justify-content-between align-items-center overflow-hidden p-1 " style="width:10%!important; min-width:100px!important;">
+                    <button class="btn border rounded-0 border-warning border-2 border-top-0 border-start-0 border-bottom-0 px-2 m-0 py-0">-</button>
+                    <span>1</span>
+                    <button class="btn border rounded-0 border-warning border-2 border-top-0 border-end-0 border-bottom-0 px-2 m-0 py-0">+</button>
+                </div> 
+                <button class="btn border border-dark border-2 text-dark mt-1 px-3 py-0">Delete</button>
+            </div>
+        </div>
+    </div>
+</div>
 
 <!-- Footer for footer section  -->
     <footer class="footer container-fluid">

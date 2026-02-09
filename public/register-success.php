@@ -107,7 +107,7 @@
                     
 
                 <!-- Wishlist icon -->
-                    <a href="" class="s-btn " type="button" data-bs-custom-class="custom-tooltip" data-bs-toggle="tooltip" data-bs-title="Wishlist " data-bs-placement="top" >
+                    <a href="wishlist.php" class="s-btn " type="button" data-bs-custom-class="custom-tooltip" data-bs-toggle="tooltip" data-bs-title="Wishlist" data-bs-placement="top" >
                         <i class="fa-solid fa-heart"></i>
                     </a>
 
