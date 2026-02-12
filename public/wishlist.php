@@ -34,23 +34,31 @@
 </head>
 <body>
 <?php
-
+    require_once __DIR__."\..\config\bootstrap.php";
+    require_once __DIR__."\..\database\db_connection.php";
+    require_once __DIR__."\..\database\wishlist_db.php";  
+    require_once __DIR__."\..\database\product_database.php";
     require_once __DIR__.'\..\database\session_management.php';
     
 //Sesseion check 
     $session = new session_management(); 
+    $db_conn = new db_connection();
+    $pdo = $db_conn->get_connection();
+
+    $product_db = new product_db($pdo);
+
+
 
     $client_name = "";
     $client_id = "";
     if($session->checkSession()){
         $client_name = $_SESSION['user_name'];
         $client_id = $_SESSION['id'];
+        $wishlist = new wishlist($pdo, $client_id, $client_name);
     }
     if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         if(isset($_POST["logout"])){
             $session->logout();
-            header("location: index.php");
-            exit;
         }
     }
 
@@ -134,27 +142,42 @@
     </header>
 
 <!-- Shopping Cart heading-->
-<h1 class="container-fluid text-center p-3">Alaya cotton Shopping Cart</h1>
+<h1 class="container-fluid text-center p-3">Alaya cotton Wishlist</h1>
 
 <!-- Shopping cart items -->
 <div class="container-fluid bg-white p-3">
-    <div class="container bg-light">
-        <div class="cart-item row p-3 border border-2 border-top-0 border-start-0 border-end-0">
-            <div class="col-xl-3 col-lg-3 col-md-3 col-sm-3 col-3 d-flex justify-content-center align-items-center">
-                <img src="/./Images/product-images/blue shirt/blue shirt 1.png" alt="Alaya cotton shirts" class="img-fluid" width="150px">
-            </div>
-            <div class="col-xl-9 col-lg-9 col-md-9 col-sm-9 col-9">
-                <p>Kondattam Copper Fancy Tissue Shirt & Dhoti Set</p>
-                <p class="text-success">In stock</p>
-                <p class="mb-0">Quantity</p>
-                <div class="border rounded-2 border-2 border-warning d-flex justify-content-between align-items-center overflow-hidden p-1" style="width:10%!important;">
-                    <button class="btn border rounded-0 border-warning border-2 border-top-0 border-start-0 border-bottom-0 px-2">-</button>
-                    <span>1</span>
-                    <button class="btn border rounded-0 border-warning border-2 border-top-0 border-end-0 border-bottom-0 px-2">+</button>
-                </div>
-                <button class="btn btn-danger mt-1">Delete</button>
-            </div>
-        </div>
+    <div class="container d-flex flex-wrap gap-5 justify-content-center align-items-center">
+        <?php 
+            if(isset($wishlist)){
+                $list = $wishlist -> getlist();
+                if(count($list)==0){
+                    echo 
+                    "<div class=\"container-fluid bg-warning py-5 shadow fw-bold text-center\">
+                    Add some products to fill your wishlist
+                    </div>";
+                }else{
+                    foreach($list as $items){
+                        $product = $product_db -> getProduct($items["product_id"]);
+                        echo 
+                        "<div class=\"card shadow-lg text-center\" style=\"width:18rem;\">
+                            <img src=\"/./product-images/".$product['img1_uniqname']."\" class=\"card-img-top\" alt=\"Alaya cotton Shirts\">
+                            <div class=\"card-body\">
+                                <div class=\"card-title fw-semibold\">".
+                                $product["product_name"]
+                                ."</div>
+                                <a href=\"product-view.php?id=".$product['product_id']."\" class=\"btn btn-warning focus-ring-warning\">View Product</a>
+                            </div>
+                        </div>";
+                    }
+                }
+            }else{
+                echo 
+                "<div class=\"container-fluid bg-warning py-5 shadow fw-bold text-center\">
+                Login to view your Wishlist
+                </div>";
+            }
+        ?>
+
     </div>
 </div>
 

@@ -36,3 +36,33 @@
     }
 }
 
+
+.tooltip-right{
+    width: auto;
+    height: 36px;
+    background-color: #faee00;
+    color: black;
+    font-weight: 500;
+    font-size: 16px;
+    padding: 5px 10px;
+    border-radius: 5px;
+    border: 1px solid rgb(191, 191, 0);
+
+    position: absolute;
+    left: 110%;
+    top: 0%;
+    z-index: 10;
+    text-wrap: nowrap;
+    visibility: hidden;
+
+}
+
+.tooltip-right::after{
+    content: " ";
+    position: absolute;
+    border-width: 10px;
+    border-style: solid;
+    border-color: transparent black transparent transparent ;
+    left: -20px;
+    top: 8px;
+}

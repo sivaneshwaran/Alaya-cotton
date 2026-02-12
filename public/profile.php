@@ -37,6 +37,7 @@
     require_once __DIR__.'\..\config\bootstrap.php';
     require_once __DIR__.'\..\database\db_connection.php';
     require_once __DIR__.'\..\database\user_database.php';
+    require_once __DIR__."\..\database\wishlist_db.php";
     require_once __DIR__.'\..\database\session_management.php';
 
 // Creating objects for Database connection
@@ -52,6 +53,7 @@
     if($session->checkSession()){
         $client_name = $_SESSION['user_name'];
         $client_id = $_SESSION['id'];
+        $wishlist = new wishlist($pdo, $client_id, $client_name);
         $client_details = $user_db->fetchAllDetails($client_id);
     }else{
         header("location: login-mail.php");
@@ -90,8 +92,23 @@
                 <div class="icon-array col-lg-2 col-md-2 col-sm-2 col-4 d-flex align-items-center justify-content-around">                    
 
                 <!-- Wishlist icon -->
-                    <a href="wishlist.php" class="s-btn " type="button" data-bs-custom-class="custom-tooltip" data-bs-toggle="tooltip" data-bs-title="Wishlist" data-bs-placement="top" >
+                    <a href="wishlist.php" class="s-btn position-relative" type="button" data-bs-custom-class="custom-tooltip" data-bs-toggle="tooltip" data-bs-title="Wishlist" data-bs-placement="top" >
                         <i class="fa-solid fa-heart"></i>
+                        <span class="position-absolute top-0 start-100 translate-middle badge rounded text-dark border border-1 border-dark" style="background-color: #faee00; padding: 3px 3px!important;">
+                            <?php
+                                if(isset($wishlist)){
+                                    $count = $wishlist -> count_product();
+                                    if($count < 100 & $count >= 0){
+                                        echo $count;
+                                    }else{
+                                        echo "99+";
+                                    }
+                                }else{
+                                    echo "0";
+                                }
+                            ?>
+                        
+                        </span>
                     </a>
 
                 <!-- Cart icon -->

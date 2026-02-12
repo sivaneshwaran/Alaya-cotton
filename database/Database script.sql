@@ -64,9 +64,10 @@ truncate product_info;
 create table card_table(
 	id int auto_increment primary key,
     client_id int not null,
-    product_id int unique not null,
+    product_id int not null,
+    price smallint unsigned not null,
     quantity int not null,
-    saved_type varchar(10)
+    added_at timestamp default current_timestamp
 );
 
 drop table card_table;
@@ -91,3 +92,19 @@ create table staff_details(
 
 drop table staff_details;
 select * from staff_details;
+
+-- Wishlist Table
+CREATE TABLE wishlist(
+	id int auto_increment primary key,
+    client_id int not null,
+    client_name varchar(255) not null,
+    product_id int not null,
+    product_name tinytext not null,
+    added_at timestamp default current_timestamp
+);
+
+INSERT INTO wishlist(client_id, client_name, product_id, product_name) values(1, "siva", 1, "Kondattam Copper Tissue Shirt & Gold Jari Border Dhoti Set");
+INSERT INTO wishlist(client_id, client_name, product_id, product_name) values(1, "siva", 2, "Kondattam Tissue Shirt & Gold Border Dhoti Set");
+SELECT * FROM wishlist;
+DROP TABLE wishlist;
+TRUNCATE wishlist;

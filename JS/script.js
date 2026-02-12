@@ -10,6 +10,7 @@ const account_menu = document.querySelector(".account-menu");
 
 
 
+
 // Whats app function for home page
 function whatsapp_open(){
     whatsapp_chat.classList.add("live");

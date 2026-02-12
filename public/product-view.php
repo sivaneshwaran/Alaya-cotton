@@ -1,6 +1,6 @@
 <?php
     require_once __DIR__.'\..\config\bootstrap.php';
-    require_once __DIR__.'\..\database\product-database.php';
+    require_once __DIR__.'\..\database\product_database.php';
     require_once __DIR__.'\..\database\db_connection.php';
 // DB connection to Product Table
     $db_conn = new db_connection();
@@ -48,7 +48,7 @@
 </head>
 <body>
 <?php
-
+    require_once __DIR__."\..\database\wishlist_db.php";
     require_once __DIR__.'\..\database\session_management.php';
     
 //Sesseion check 
@@ -59,12 +59,11 @@
     if($session->checkSession()){
         $client_name = $_SESSION['user_name'];
         $client_id = $_SESSION['id'];
+        $wishlist = new wishlist($pdo, $client_id, $client_name);
     }
     if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         if(isset($_POST["logout"])){
             $session->logout();
-            header("location: index.php");
-            exit;
         }
     }
 
@@ -133,8 +132,23 @@
                     
 
                 <!-- Wishlist icon -->
-                    <a href="wishlist.php" class="s-btn " data-bs-custom-class="custom-tooltip" data-bs-toggle="tooltip" data-bs-title="Wishlist" data-bs-placement="top" >
+                    <a href="wishlist.php" class="s-btn position-relative" data-bs-custom-class="custom-tooltip" data-bs-toggle="tooltip" data-bs-title="Wishlist" data-bs-placement="top" >
                         <i class="fa-solid fa-heart"></i>
+                        <span class="position-absolute top-0 start-100 translate-middle badge rounded text-dark border border-1 border-dark" style="background-color: #faee00; padding: 3px 3px!important;">
+                            <?php
+                                if(isset($wishlist)){
+                                    $count = $wishlist -> count_product();
+                                    if($count < 100 & $count >= 0){
+                                        echo $count;
+                                    }else{
+                                        echo "99+";
+                                    }
+                                }else{
+                                    echo "0";
+                                }
+                            ?>
+                        
+                        </span>      
                     </a>
 
                 <!-- Cart icon -->
@@ -291,6 +305,11 @@
                     <h3 class="my-3">
                         <?php echo $product["product_name"];?>
                     </h3>
+                    <button class="btn border border-0 text-success fw-bold position-relative" 
+                    onclick="addToWishlist()">
+                        <i class="fa-solid fa-heart"></i> Add to wishlist 
+                        <span class="tooltip-right"></span>
+                    </button>
 
                     <p class="fw-bold fs-4 text-danger my-3">
                         Rs. <?php echo $product["sell_price"];?>/-
@@ -637,16 +656,45 @@
 <!-- Script for custom script file -->
     <script src="\..\JS\script.js"></script>
     <script>
-        const img_btn = document.querySelector(".img-btn");
-        const main_img = document.querySelector(".main-img");
-        function getSrc(event){
-            var child = event.firstElementChild;
-            var source = child.getAttribute("src");
-            main_img.setAttribute("src", source);
-            console.log("click");
-        }
+        // const img_btn = document.querySelector(".img-btn");
+        // const main_img = document.querySelector(".main-img");
+        // function getSrc(event){
+        //     var child = event.firstElementChild;
+        //     var source = child.getAttribute("src");
+        //     main_img.setAttribute("src", source);
+        //     console.log("click");
+        // }
 
-        img_btn.addEventListener("click", getSrc);
+        // img_btn.addEventListener("click", getSrc);
+        var tooltip_right = document.querySelector(".tooltip-right");
+
+        function addToWishlist(){
+            var result = <?php   
+                if(isset($wishlist)){
+                    echo $wishlist->addProduct($product["product_id"], $product["product_name"]);
+                }
+            ?>;
+            
+            if(result == 0 ){
+                tooltip_right.style.visibility = "visible";
+                tooltip_right.innerHTML = "Not Added (Something went wrong)";
+            }else if(result == 1){
+                tooltip_right.style.visibility = "visible";
+                tooltip_right.innerHTML = "Added to Wishlist";  
+                setTimeout(()=>{
+                    window.location.reload();
+                }, 2200);              
+            }else if(result == 2){
+                tooltip_right.style.visibility = "visible";
+                tooltip_right.innerHTML = "Product already in wishlist";                
+            }
+
+            setTimeout(()=>{
+                tooltip_right.style.visibility = "hidden";
+            }, 2000);
+
+
+        }
     </script>
 </body>
 </html>
