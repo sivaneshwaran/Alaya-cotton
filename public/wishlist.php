@@ -41,9 +41,9 @@
     require_once __DIR__.'\..\database\session_management.php';
     
 //Sesseion check 
-    $session = new session_management(); 
     $db_conn = new db_connection();
     $pdo = $db_conn->get_connection();
+    $session = new session_management($pdo); 
 
     $product_db = new product_db($pdo);
 
@@ -53,7 +53,7 @@
     $client_id = "";
     if($session->checkSession()){
         $client_name = $_SESSION['user_name'];
-        $client_id = $_SESSION['id'];
+        $client_id = $_SESSION['user_id'];
         $wishlist = new wishlist($pdo, $client_id, $client_name);
     }
     if ($_SERVER['REQUEST_METHOD'] === 'POST') {
@@ -159,13 +159,16 @@
                     foreach($list as $items){
                         $product = $product_db -> getProduct($items["product_id"]);
                         echo 
-                        "<div class=\"card shadow-lg text-center\" style=\"width:18rem;\">
+                        "<div class=\"card shadow-lg text-start\" style=\"width:18rem;\" id=\"".$product['product_id']."\">
                             <img src=\"/./product-images/".$product['img1_uniqname']."\" class=\"card-img-top\" alt=\"Alaya cotton Shirts\">
                             <div class=\"card-body\">
                                 <div class=\"card-title fw-semibold\">".
                                 $product["product_name"]
                                 ."</div>
-                                <a href=\"product-view.php?id=".$product['product_id']."\" class=\"btn btn-warning focus-ring-warning\">View Product</a>
+                                <div class=\"container-fluid p-0 d-flex justify-content-between align-items-center\"> 
+                                    <a href=\"product-view.php?id=".$product['product_id']."\" class=\"btn btn-warning focus-ring-warning\">View Product</a>
+                                    <button class=\"btn btn-dark\"><i class=\"fa-solid fa-trash\" onclick=\"remove()\"></i></button>
+                                </div>
                             </div>
                         </div>";
                     }
@@ -467,6 +470,12 @@
     </footer>
 
 <script src="\..\JS\script.js"></script>
+
+<script>
+    function remove(){
+        
+    }
+</script>
 
 </body>
 </html>

@@ -38,16 +38,20 @@
         require_once __DIR__.'\..\database\user_database.php';
         require_once __DIR__."\..\database\wishlist_db.php";
         require_once __DIR__.'\..\database\session_management.php';
+        require_once __DIR__.'\..\database\session_handler.php';
 
-        $session = new session_management(); 
         $db_conn = new db_connection();
         $pdo = $db_conn->get_connection();
+
+        $session = new session_management($pdo); 
+        
+
 
         $client_name = "";
         $client_id = "";
         if($session->checkSession()){
             $client_name = $_SESSION['user_name'];
-            $client_id = $_SESSION['id'];
+            $client_id = $_SESSION['user_id'];
             $wishlist = new wishlist($pdo, $client_id, $client_name);
             header("location: \index.php");
             exit;

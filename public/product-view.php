@@ -48,17 +48,23 @@
 </head>
 <body>
 <?php
+    require_once __DIR__.'\..\config\bootstrap.php';
+    require_once __DIR__.'\..\database\db_connection.php';
     require_once __DIR__."\..\database\wishlist_db.php";
     require_once __DIR__.'\..\database\session_management.php';
     
+
 //Sesseion check 
-    $session = new session_management(); 
+    $db_conn = new db_connection();
+    $pdo = $db_conn->get_connection();
+    $session = new session_management($pdo); 
 
     $client_name = "";
     $client_id = "";
+    $run = false;
     if($session->checkSession()){
         $client_name = $_SESSION['user_name'];
-        $client_id = $_SESSION['id'];
+        $client_id = $_SESSION['user_id'];
         $wishlist = new wishlist($pdo, $client_id, $client_name);
     }
     if ($_SERVER['REQUEST_METHOD'] === 'POST') {
@@ -300,13 +306,12 @@
                 </div>
 
             <!-- Product Details column -->
-                <div class="product-details col-xl-6 col-lg-6 col-md-6 col-sm-12 col-12 py-4">
+                <div class="product-details col-xl-6 col-lg-6 col-md-6 col-sm-12 col-12 py-4" id="<?php echo $product["product_id"];?>" >
                 <!-- Product Name -->
-                    <h3 class="my-3">
+                    <h3 class="p-name my-3">
                         <?php echo $product["product_name"];?>
                     </h3>
-                    <button class="btn border border-0 text-success fw-bold position-relative" 
-                    onclick="addToWishlist()">
+                    <button class="addToWishlist btn border border-0 text-success fw-bold position-relative" >
                         <i class="fa-solid fa-heart"></i> Add to wishlist 
                         <span class="tooltip-right"></span>
                     </button>
@@ -655,46 +660,6 @@
 
 <!-- Script for custom script file -->
     <script src="\..\JS\script.js"></script>
-    <script>
-        // const img_btn = document.querySelector(".img-btn");
-        // const main_img = document.querySelector(".main-img");
-        // function getSrc(event){
-        //     var child = event.firstElementChild;
-        //     var source = child.getAttribute("src");
-        //     main_img.setAttribute("src", source);
-        //     console.log("click");
-        // }
-
-        // img_btn.addEventListener("click", getSrc);
-        var tooltip_right = document.querySelector(".tooltip-right");
-
-        function addToWishlist(){
-            var result = <?php   
-                if(isset($wishlist)){
-                    echo $wishlist->addProduct($product["product_id"], $product["product_name"]);
-                }
-            ?>;
-            
-            if(result == 0 ){
-                tooltip_right.style.visibility = "visible";
-                tooltip_right.innerHTML = "Not Added (Something went wrong)";
-            }else if(result == 1){
-                tooltip_right.style.visibility = "visible";
-                tooltip_right.innerHTML = "Added to Wishlist";  
-                setTimeout(()=>{
-                    window.location.reload();
-                }, 2200);              
-            }else if(result == 2){
-                tooltip_right.style.visibility = "visible";
-                tooltip_right.innerHTML = "Product already in wishlist";                
-            }
-
-            setTimeout(()=>{
-                tooltip_right.style.visibility = "hidden";
-            }, 2000);
-
-
-        }
-    </script>
+    <script src="\..\JS\wishlist.js"></script>
 </body>
 </html>

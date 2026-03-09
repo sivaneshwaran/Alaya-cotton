@@ -96,8 +96,7 @@ select * from staff_details;
 -- Wishlist Table
 CREATE TABLE wishlist(
 	id int auto_increment primary key,
-    client_id int not null,
-    client_name varchar(255) not null,
+	data MEDIUMTEXT,
     product_id int not null,
     product_name tinytext not null,
     added_at timestamp default current_timestamp
@@ -108,3 +107,17 @@ INSERT INTO wishlist(client_id, client_name, product_id, product_name) values(1,
 SELECT * FROM wishlist;
 DROP TABLE wishlist;
 TRUNCATE wishlist;
+
+-- Session management table 
+CREATE TABLE user_session(
+	session_id VARCHAR(255) UNIQUE NOT NULL ,
+    user_data MEDIUMTEXT,
+    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    last_updated DATETIME NOT NULL,
+    PRIMARY KEY(session_id)
+);
+
+CREATE INDEX idx_session_id ON user_session(session_id);
+SELECT * FROM user_session;
+TRUNCATE TABLE user_session;
+DROP TABLE user_session;

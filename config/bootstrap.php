@@ -1,5 +1,7 @@
 <?php
-// Dotenv code only
+// Dotenv code 
+// PHP ini setup config
+ini_set("session.gc_maxlifetime", "10");
 // Enable detailed error reporting for mysqli
     mysqli_report(MYSQLI_REPORT_ERROR | MYSQLI_REPORT_STRICT);
 

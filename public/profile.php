@@ -45,14 +45,14 @@
     $pdo = $dbConn->get_connection();//PDO connection object
     $user_db = new user_database($pdo);//User database
 
-    $session = new session_management(); //Session management
+    $session = new session_management($pdo); //Session management
 
     $client_name = "";
     $client_id = "";
     $client_details = array();
     if($session->checkSession()){
         $client_name = $_SESSION['user_name'];
-        $client_id = $_SESSION['id'];
+        $client_id = $_SESSION['user_id'];
         $wishlist = new wishlist($pdo, $client_id, $client_name);
         $client_details = $user_db->fetchAllDetails($client_id);
     }else{

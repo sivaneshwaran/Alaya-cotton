@@ -1,14 +1,21 @@
 <?php 
+    require_once __DIR__."/session_handler.php";
+
+
 // Class for session management for Clients only
 class session_management{
 // Class properties
 
 // Class constructor for initiate the Session and its parameters
-    public function __construct()
+    public function __construct($pdo)
     {
+    // Session handle code
+        $handler = new session_handler($pdo);
+        session_set_save_handler($handler, true);   
+
     // Configure session cookie parameters
         session_set_cookie_params([
-            'lifetime' => 3600*24,
+            'lifetime' => 3600*24*7,
             'path' => '/',
             'domain' => '',
             'secure' => true,
@@ -24,21 +31,26 @@ class session_management{
 
 // Login session method
     public function login(array $data){
-        $user_data = $data;
+        // Session data
         $_SESSION["logged_in"] = true;
-        $_SESSION["user_type"] = "client";
-        $_SESSION["user_name"] = $user_data["client_name"];
-        $_SESSION["id"] = $user_data["client_id"];
+        $_SESSION["user_type"] = "client";  
+        $_SESSION["user_name"] = $data["client_name"];
+        $_SESSION["user_id"] = $data["client_id"];
+        
+        // cookie data
+        setcookie("logged_in", "true", time()+ 3600*24, "/", "", true, true);
     }
 
 // Logout session method
     public function logout(){
-        if(ini_get("session.use_cookies")){
-            $params = session_get_cookie_params();
-            setcookie("Alaya_Cottons", " ", time()-4200, $params["path"], $params["domain"], $params["secure"], $params["httponly"]);
-        }
         session_unset();
         session_destroy();
+        if(ini_get("session.use_cookies")){
+            $params = session_get_cookie_params();
+            setcookie("Alaya_Cottons", "", time()-4200, $params["path"], $params["domain"], $params["secure"], $params["httponly"]);
+            setcookie("logged_in", "false",  time()+ 3600*24, "/", "", true, true);
+        }
+
     }
 
 // Checks the session presences
@@ -56,6 +68,11 @@ class session_management{
             return true;
         }
         return false;
+    }
+
+// Set cookies
+    public function setCookies(){
+
     }
 
 }
