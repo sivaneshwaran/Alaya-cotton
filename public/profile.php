@@ -6,7 +6,7 @@
     <title>Profile</title>
 
 <!-- Link for Icon -->
-    <link rel="icon" href="/Images/Raw images/fevicon.ico" type="image">
+    <link rel="icon" href="../images/brand/fevicon.ico" type="image">
 
 <!-- Link for Bootstrap -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.7/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-LN+7fdVzj6u52u30Kp6M/trliBMCMKTyK833zpbD+pXdCLuTusPj697FH4R/5mcr" crossorigin="anonymous">
@@ -20,9 +20,9 @@
     <link href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
 
 <!-- Stylesheet link -->
-    <link rel="stylesheet" href="/CSS/style.css">
-    <link rel="stylesheet" href="/CSS/style-register.css">
-    <link rel="stylesheet" href="/CSS/style-profile.css">
+    <link rel="stylesheet" href="../css/style.css">
+    <link rel="stylesheet" href="../css/style-register.css">
+    <link rel="stylesheet" href="../css/style-profile.css">
     
 
 <!-- Fontawsome link for icons -->
@@ -34,11 +34,11 @@
 </head>
 <body>
 <?php 
-    require_once __DIR__.'\..\config\bootstrap.php';
-    require_once __DIR__.'\..\database\db_connection.php';
-    require_once __DIR__.'\..\database\user_database.php';
-    require_once __DIR__."\..\database\wishlist_db.php";
-    require_once __DIR__.'\..\database\session_management.php';
+    require_once __DIR__.'/../config/bootstrap.php';
+    require_once __DIR__.'/../database/db_connection.php';
+    require_once __DIR__.'/../database/user_database.php';
+    require_once __DIR__."/../database/wishlist_db.php";
+    require_once __DIR__.'/../database/session_management.php';
 
 // Creating objects for Database connection
     $dbConn = new db_connection();
@@ -84,7 +84,7 @@
             <!-- column 2 for logo -->
                 <div class="col-lg-8 col-md-8 col-sm-8 col-5 d-flex align-middle justify-content-center py-3 ">
                     <a href="/index.php">
-                        <img src="/Images/Raw images/Alaya-Logo---English_01.jpg" alt="Alaya logo image" title="Alaya logo image"  width="150px" class="logo-icon">
+                        <img src="../images/brand/alaya-logo.jpg" alt="Alaya logo image" title="Alaya logo image"  width="150px" class="logo-icon">
                     </a>
                 </div>
 
@@ -130,7 +130,7 @@
 <!-- Profile details section -->
     <section class="profile container-fluid p-0">
         <div class="container-fluid p-3 m-0 d-flex justify-content-start align-items-center" style="background-color: rgba(245, 237, 166, 1);">
-            <img class="profile-img" src="/Images/Raw images/account-avatar-profile-user-6-svgrepo-com.svg" alt="profile picture alaya cotton " >
+            <img class="profile-img" src="../images/svg/account-avatar-profile.svg" alt="profile picture alaya cotton " >
             <div class="container-fluid d-flex justify-content-start align-items-start flex-column ms-2 border border-5 border-secondary border-top-0 border-end-0 border-bottom-0">
                 <p class="h2 text-success fw-bold"><?php echo $client_details['client_name']?></p>
                 <p><b>client_id: </b><?php echo $client_id?></p>
@@ -207,8 +207,8 @@
 
 
 <!-- Script for custom script file -->
-    <script src="/JS/script.js"></script>
-    <script src="/JS/script-register.js"></script>
+    <script src="../js/script.js"></script>
+    <script src="../js/script-register.js"></script>
 
 
 </body>

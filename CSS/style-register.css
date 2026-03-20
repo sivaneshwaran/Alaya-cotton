@@ -33,7 +33,7 @@
     width: 100%!important;
     height: 80vh!important;
     background-color: rgb(52, 52, 52);
-    background-image: url("/Images/Raw images/carousal 3.jpeg");
+    background-image: url("../images/display-images/carousal-3.jpeg");
     background-position: center;
     background-repeat: no-repeat;
     background-size: cover;

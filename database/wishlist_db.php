@@ -61,7 +61,7 @@ class wishlist{
     public function count_product(){
         $list = $this->getlist();
 
-        return count($list);
+        return count($list ?? []);
     }
 
 // Check presence of product in wishlist (return type: Boolean ? True=> Present, False=> Absent)

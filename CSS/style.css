@@ -454,7 +454,7 @@
 .whatsapp-chat{
     width: 300px;
     height: 250px;
-    background-image: url("/Images/Raw\ images/peakpx (1).jpg");
+    background-image: url("../images/background-images/whatsapp-wallpaper.jpg");
     background-size: cover;
     position: fixed;
     right: 40px;
@@ -511,7 +511,7 @@
 .msg-body div{
     width: 80px;
     height: 80px;
-    background-image: url("./Images/Raw\ images/whatsapp logo.png");
+    background-image: url("../images/background-images/whatsapp-alaya-logo.png");
     background-size: contain;
     background-position: center;
     background-repeat: no-repeat;

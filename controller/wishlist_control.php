@@ -1,8 +1,8 @@
 <?php 
-require_once __DIR__."\..\config\bootstrap.php";
-require_once __DIR__."\..\database\wishlist_db.php";
-require_once __DIR__."\..\database\db_connection.php";
-require_once __DIR__."\..\database\session_management.php";
+require_once __DIR__."/../config/bootstrap.php";
+require_once __DIR__."/../database/wishlist_db.php";
+require_once __DIR__."/../database/db_connection.php";
+require_once __DIR__."/../database/session_management.php";
 
 // GET data from ajax
 $product_id = htmlspecialchars($_POST["product_id"]);
@@ -18,16 +18,19 @@ if($_COOKIE["logged_in"] == "true"){
 }else{
     echo "Not Logged in ";
 }
-$session = new session_management();
+
+// DB connection
+$db_conn = new db_connection();
+$pdo = $db_conn->get_connection();
+
+$session = new session_management($pdo);
 
 foreach($_SESSION as $key => $values){
     echo "\nKey = ".$key."; Value = ".$values."\n";
 }
 
 
-// DB connection
-$db_conn = new db_connection();
-$pdo = $db_conn->get_connection();
+
 
 // $wishlist = new wishlist($pdo, $user_data['user_id'], $user_data['user_name']);
 

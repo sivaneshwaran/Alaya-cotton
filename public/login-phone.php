@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Alaya cotton registeration</title>
 <!-- Link for Icon -->
-    <link rel="icon" href="/Images/Raw images/fevicon.ico" type="image">
+    <link rel="icon" href="../images/brand/fevicon.ico" type="image">
 
 <!-- Link for Bootstrap -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.7/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-LN+7fdVzj6u52u30Kp6M/trliBMCMKTyK833zpbD+pXdCLuTusPj697FH4R/5mcr" crossorigin="anonymous">
@@ -19,8 +19,8 @@
     <link href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
 
 <!-- Stylesheet link -->
-    <link rel="stylesheet" href="/CSS/style.css">
-    <link rel="stylesheet" href="/CSS/style-register.css">
+    <link rel="stylesheet" href="../css/style.css">
+    <link rel="stylesheet" href="../css/style-register.css">
     
 
 <!-- Fontawsome link for icons -->
@@ -33,11 +33,11 @@
 </head>
 <body>
     <?php
-        require_once __DIR__.'\..\config\bootstrap.php';
-        require_once __DIR__.'\..\database\db_connection.php';
-        require_once __DIR__.'\..\database\user_database.php';
-        require_once __DIR__."\..\database\wishlist_db.php";
-        require_once __DIR__.'\..\database\session_management.php';
+        require_once __DIR__.'/../config/bootstrap.php';
+        require_once __DIR__.'/../database/db_connection.php';
+        require_once __DIR__.'/../database/user_database.php';
+        require_once __DIR__."/../database/wishlist_db.php";
+        require_once __DIR__.'/../database/session_management.php';
 
 
         $db_conn = new db_connection();
@@ -124,7 +124,7 @@
             <!-- column 2 for logo -->
                 <div class="col-lg-8 col-md-8 col-sm-8 col-5 d-flex align-middle justify-content-center py-3 ">
                     <a href="/index.php">
-                        <img src="/Images/Raw images/Alaya-Logo---English_01.jpg" alt="Alaya logo image" title="Alaya logo image"  width="150px" class="logo-icon">
+                        <img src="../images/brand/alaya-logo.jpg" alt="Alaya logo image" title="Alaya logo image"  width="150px" class="logo-icon">
                     </a>
                 </div>
 
@@ -142,7 +142,7 @@
                                 
                                 echo '<ul class="w-100 acount-list text-center">
                                         <li class="my-2">
-                                            <img src="/Images/Raw images/profile-svgrepo-com (2).svg" width="70px" height="70px">
+                                            <img src="../images/svg/profile-black.svg" width="70px" height="70px">
                                         </li>
                                         <li class="my-2">
                                             <p class="m-0 fw-bold text-success">'.$client_name.'</p>
@@ -163,7 +163,7 @@
                                         </li>
                                         <li class=" list-group-item" >
                                             <p class="mt-0 mb-1">Don\'t Have an Account?</p>
-                                            <a href="Register.php" class="fw-bold py-1 ">Register now</a>
+                                            <a href="register.php" class="fw-bold py-1 ">Register now</a>
                                         </li>
                                     </ul>';
                             }
@@ -261,8 +261,8 @@
         <div class="col-xl-2 col-lg-2 col-md-3 col-sm-3 col-6  ">
         <!-- Image 1 -->
             <div class="images d-flex flex-column align-items-center">
-                <img src="/Images/Raw images/Kgf1-top.webp" alt="" class="img-top img-fluid">
-                <img src="/Images/Raw images/Kgf1-under.webp" alt="" class="img-under img-fluid">
+                <img src="../images/product-images/gold-border-shirt/gold-shirt-1.png" alt="" class="img-top img-fluid">
+                <img src="../images/product-images/gold-border-shirt/gold-shirt-1.png" alt="" class="img-under img-fluid">
             
             <!-- Icon set div -->
                 <div class="icon-set ">  
@@ -298,8 +298,8 @@
         <div class="col-xl-2 col-lg-2 col-md-3 col-sm-3 col-6 ">
         <!-- Image 2 -->
             <div class="images d-flex flex-column align-items-center">
-                <img src="/Images/Raw images/Kgf2-top.webp" alt="" class="img-top img-fluid">
-                <img src="/Images/Raw images/Kgf2-under.webp" alt="" class="img-under img-fluid">
+                <img src="../images/product-images/copper-shirt/copper-shirt-1.png" alt="" class="img-top img-fluid">
+                <img src="../images/product-images/copper-shirt/copper-shirt-2.png" alt="" class="img-under img-fluid">
 
             <!-- Icon set div -->
                 <div class="icon-set ">  
@@ -319,7 +319,7 @@
 
         <!-- Div for information -->
             <div class="info">
-                <p><b>Kondattam Tissue Shirt & Dhoti Set- Copper</b></p>
+                <p><b>Kondattam Copper Tissue Shirt & Copper Jari Border Dhoti Set</b></p>
                 <!-- <p>
                     <i class="fa-solid fa-star text-warning"></i>
                     <i class="fa-solid fa-star text-warning"></i>
@@ -335,8 +335,8 @@
         <div class="col-xl-2 col-lg-2 col-md-3 col-sm-3 col-xs-6 d-none d-md-block ">
         <!-- Image 4 -->
             <div class="images d-flex flex-column align-items-center">
-                <img src="/Images/Raw images/Kgf4-top.webp" alt="" class="img-top img-fluid">
-                <img src="/Images/Raw images/Kgf4-under.webp" alt="" class="img-under img-fluid">
+                <img src="../images/product-images/green-shirt/green-shirt-1.webp" alt="" class="img-top img-fluid">
+                <img src="../images/product-images/green-shirt/green-shirt-2.webp" alt="" class="img-under img-fluid">
 
             <!-- Icon set div -->
                 <div class="icon-set ">  
@@ -372,8 +372,8 @@
         <div class="col-xl-2 col-lg-2 col-md-3 col-sm-3 col-xs-6 d-none d-md-block ">
          <!-- Image 3 -->
             <div class="images d-flex flex-column align-items-center">
-                <img src="/Images/Raw images/Kgf3-top.webp" alt="" class="img-top img-fluid">
-                <img src="/Images/Raw images/Kgf3-under.webp" alt="" class="img-under img-fluid">
+                <img src="../images/product-images/blue-shirt/blue-shirt-1.png" alt="" class="img-top img-fluid">
+                <img src="../images/product-images/blue-shirt/blue-shirt-2.png" alt="" class="img-under img-fluid">
 
             <!-- Icon set div -->
                 <div class="icon-set ">  
@@ -393,7 +393,7 @@
         
         <!-- Div for information -->
             <div class="info">
-                <p><b>Kondattam Tissue Shirt & Dhoti Set- Blue</b></p>
+                <p><b>Kondattam Grand Tissue Shirt & Dhoti Combo - Blue Hosta</b></p>
                 <!-- <p>
                     <i class="fa-solid fa-star text-warning"></i>
                     <i class="fa-solid fa-star text-warning"></i>
@@ -409,8 +409,8 @@
         <div class="col-xl-2 col-lg-2  d-none d-md-none d-xl-block d-lg-block ">
         <!-- Image 5 -->
             <div class="images d-flex flex-column align-items-center">
-                <img src="/Images/Raw images/dothi 1 top.webp" alt="" class="img-top img-fluid">
-                <img src="/Images/Raw images/dothi 1.jpg" alt="" class="img-under img-fluid">
+                <img src="../images/product-images/dothi-wide-gold/dothi-wide-gold-1.jpg" alt="" class="img-top img-fluid">
+                <img src="../images/product-images/dothi-wide-gold/dothi-wide-gold-2.webp" alt="" class="img-under img-fluid">
 
             <!-- Icon set div -->
                 <div class="icon-set ">  
@@ -446,8 +446,8 @@
         <div class="col-xl-2 col-lg-2  d-none d-md-none d-xl-block d-lg-block">
         <!-- Image 6 -->
             <div class="images d-flex flex-column align-items-center">
-                <img src="/Images/Raw images/dothi 2 top.webp" alt="" class="img-top img-fluid">
-                <img src="/Images/Raw images/dothi 2.jpg" alt="" class="img-under img-fluid">
+                <img src="../images/product-images/dothi-line-gold/dothi-line-gold-1.webp" alt="" class="img-top img-fluid">
+                <img src="../images/product-images/dothi-line-gold/dothi-line-gold-2.jpg" alt="" class="img-under img-fluid">
 
             <!-- Icon set div -->
                 <div class="icon-set ">  
@@ -769,8 +769,8 @@
     </footer>
     
 <!-- Script for custom script file -->
-    <script src="/JS/script.js"></script>
-    <script src="/JS/script-register.js"></script>
+    <script src="../js/script.js"></script>
+    <script src="../js/script-register.js"></script>
 
 <script>
   window.onload = function() {

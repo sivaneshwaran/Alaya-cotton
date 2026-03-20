@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Alaya Cotton Shopping Cart</title>
 <!-- Link for Icon -->
-    <link rel="icon" href="/./Images/Raw images/fevicon.ico" type="image">
+    <link rel="icon" href="../images/brand/fevicon.ico" type="image">
 
 <!-- Link for Bootstrap -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.7/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-LN+7fdVzj6u52u30Kp6M/trliBMCMKTyK833zpbD+pXdCLuTusPj697FH4R/5mcr" crossorigin="anonymous">
@@ -19,9 +19,9 @@
     <link href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
 
 <!-- Stylesheet link -->
-    <link rel="stylesheet" href="/./CSS/style.css">
-    <link rel="stylesheet" href="/./CSS/style-register.css">
-    <link rel="stylesheet" href="/./CSS/style-product-view.css">
+    <link rel="stylesheet" href="../css/style.css">
+    <link rel="stylesheet" href="../css/style-register.css">
+    <link rel="stylesheet" href="../css/style-product-view.css">
     
 
 <!-- Fontawsome link for icons -->
@@ -34,11 +34,11 @@
 </head>
 <body>
 <?php
-    require_once __DIR__."\..\config\bootstrap.php";
-    require_once __DIR__."\..\database\db_connection.php";
-    require_once __DIR__."\..\database\wishlist_db.php";  
-    require_once __DIR__."\..\database\product_database.php";
-    require_once __DIR__.'\..\database\session_management.php';
+    require_once __DIR__."/../config/bootstrap.php";
+    require_once __DIR__."/../database/db_connection.php";
+    require_once __DIR__."/../database/wishlist_db.php";  
+    require_once __DIR__."/../database/product_database.php";
+    require_once __DIR__.'/../database/session_management.php';
     
 //Sesseion check 
     $db_conn = new db_connection();
@@ -79,7 +79,7 @@
             <!-- column 2 for logo -->
                 <div class="col-lg-8 col-md-8 col-sm-8 col-5 d-flex align-middle justify-content-center py-3 ">
                     <a href="/index.php">
-                        <img src="/Images/Raw images/Alaya-Logo---English_01.jpg" alt="Alaya logo image" title="Alaya logo image"  width="150px" class="logo-icon">
+                        <img src="../images/brand/alaya-logo.jpg" alt="Alaya logo image" title="Alaya logo image"  width="150px" class="logo-icon">
                     </a>
                 </div>
 
@@ -97,7 +97,7 @@
                                 
                                 echo '<ul class="w-100 acount-list text-center">
                                         <li class="my-2">
-                                            <img src="/Images/Raw images/profile-svgrepo-com (2).svg" width="70px" height="70px">
+                                            <img src="../images/svg/profile-black.svg" width="70px" height="70px">
                                         </li>
                                         <li class="my-2">
                                             <p class="m-0 fw-bold text-success">'.$client_name.'</p>
@@ -118,7 +118,7 @@
                                         </li>
                                         <li class=" list-group-item" >
                                             <p class="mt-0 mb-1">Don\'t Have an Account?</p>
-                                            <a href="Register.php" class="fw-bold py-1 ">Register now</a>
+                                            <a href="register.php" class="fw-bold py-1 ">Register now</a>
                                         </li>
                                     </ul>';
                             }
@@ -469,7 +469,7 @@
         </div><!-- Second row for footer ends here-->   
     </footer>
 
-<script src="\..\JS\script.js"></script>
+<script src="../js/script.js"></script>
 
 <script>
     function remove(){
