@@ -38,7 +38,7 @@ class session_management{
         $_SESSION["user_id"] = $data["client_id"];
         
         // cookie data
-        setcookie("logged_in", "true", time()+ 3600*24, "/", "", true, true);
+        setcookie("logged_in", "true", time()+ 3600*24*7, "/", "", true, true);
     }
 
 // Logout session method

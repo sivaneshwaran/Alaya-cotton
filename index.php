@@ -45,9 +45,6 @@
     $pdo = $db_conn -> get_connection();
     $session = new session_management($pdo); 
 
-
-    
-
     $client_name = "";
     $client_id = "";
     if($session->checkSession()){
@@ -136,7 +133,7 @@
                  </div>
 
                     
-
+ 
                 <!-- Wishlist icon -->
                     <a href="/public/wishlist.php" class="s-btn wishlist position-relative" data-bs-custom-class="custom-tooltip" data-bs-toggle="tooltip" data-bs-title="Wishlist " data-bs-placement="top" >
                         <i class="fa-solid fa-heart"></i>
