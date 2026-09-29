@@ -2,11 +2,11 @@
 class wishlist{
     private PDO $pdo;
     private $pdo_error = "";  
-    private $client_id = null;
-    private $client_name = null;
+    private ?string $client_id = null;
+    private ?string $client_name = null;
 
 // Constructor 
-    public function __construct(PDO $pdo, $client_id, $client_name){
+    public function __construct(PDO $pdo, string $client_id, string $client_name){
         $this->pdo = $pdo;
         $this->client_id = $client_id;
         $this->client_name = $client_name;

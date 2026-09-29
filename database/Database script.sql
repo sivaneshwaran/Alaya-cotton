@@ -103,7 +103,7 @@ CREATE TABLE wishlist(
 );
 
 INSERT INTO wishlist(client_id, client_name, product_id, product_name) values(1, "siva", 1, "Kondattam Copper Tissue Shirt & Gold Jari Border Dhoti Set");
-INSERT INTO wishlist(client_id, client_name, product_id, product_name) values(1, "siva", 2, "Kondattam Tissue Shirt & Gold Border Dhoti Set");
+INSERT INTO wishlist(client_id, client_name, product_id, product_name) values(2, "siva", 2, "Kondattam Tissue Shirt & Gold Border Dhoti Set");
 SELECT * FROM wishlist;
 DROP TABLE wishlist;
 TRUNCATE wishlist;

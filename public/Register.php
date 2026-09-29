@@ -79,7 +79,7 @@
         $user_db = new user_database($pdo);
 
     // Sanitize the input
-        function test($input){
+        function test(String $input): String{
             $input = trim($input);
             $input = stripslashes($input);
             $input = htmlspecialchars($input);
@@ -87,7 +87,7 @@
         }
 
     // Validate the Date of birth
-        function validateDOB($DOB):bool{
+        function validateDOB(String $DOB):bool{
             $dob = DateTime::createFromFormat('Y-m-d', $DOB);
             $now = new DateTime();
             $age = $now->diff($dob)->y;

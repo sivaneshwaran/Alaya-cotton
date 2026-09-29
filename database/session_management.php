@@ -7,7 +7,7 @@ class session_management{
 // Class properties
 
 // Class constructor for initiate the Session and its parameters
-    public function __construct($pdo)
+    public function __construct(PDO $pdo)
     {
     // Session handle code
         $handler = new session_handler($pdo);
@@ -62,7 +62,7 @@ class session_management{
     }
 
 // Used to set the message in session 
-    public function setMessage($message, $msg_name){
+    public function setMessage(string $message,string $msg_name){
         if(isset($_SESSION["logged_in"]) && $_SESSION["logged_in"] === true && session_name() === "Alaya_Cottons"){
             $_SESSION[$msg_name] = $message;
             return true;

@@ -6,7 +6,7 @@ class session_handler implements SessionHandlerInterface{
     private $table = "user_session";
     
 
-    public function __construct($PDO){
+    public function __construct(PDO $PDO){
         $this->pdo = $PDO;
     }
 
@@ -89,10 +89,12 @@ class session_handler implements SessionHandlerInterface{
 
     public function gc(int $max_lifetime): int|false{
         try{
-            $query = "DELETE * FROM {$this->table} WHERE last_updated < NOW() - INTERVAL ? SECOND";
+            $query = "DELETE * FROM {$this->table} WHERE last_updated < DATE_SUB(NOW() - INTERVAL :max_lifetime SECOND)";
 
             $statement = $this->pdo->prepare($query);
-            $statement->execute();
+            $statement->execute([
+                "max_lifetime" => $max_lifetime
+            ]);
             
             return $statement -> rowCount();
             

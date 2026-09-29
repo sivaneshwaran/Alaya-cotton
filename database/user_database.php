@@ -9,7 +9,7 @@ class user_database{
     }
 
 // Create account function
-    function create_userAccount($name, $mail, $phone, $gender, $DOB, $address, $city, $state, $zipcode, $hash_password){
+    function create_userAccount(string $name, string $mail, string $phone, string $gender, string $DOB, string $address, string $city, string $state, string $zipcode, string $hash_password){
         $name = $name;
         $mail = $mail;
         $phone = $phone;

@@ -7,7 +7,7 @@ class product_db{
         $this->pdo = $pdo;
     }
 
-    public function createNewProduct($name, $category, $quantity, $buy_price, $sell_price, $description,array $original_names, array $unique_names, $staff_name, $staff_id){
+    public function createNewProduct(string $name, string $category, string $quantity, string $buy_price, string $sell_price, string $description,array $original_names, array $unique_names, string $staff_name, string $staff_id){
         $name = $name;
         $category = $category;
         $quantity = $quantity;
@@ -58,7 +58,7 @@ class product_db{
     }
 
 // Get Product with ID
-    public function getProduct($product_id){
+    public function getProduct(string $product_id){
         try{
             $product_id = $product_id;
             $query = "SELECT * FROM product_info WHERE product_id=:id LIMIT 1";

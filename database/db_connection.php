@@ -1,7 +1,7 @@
 <?php
 class db_connection{
     private PDO $pdo;
-    private $pdo_error;
+    private string $pdo_error;
 
     public function __construct(){
         $dns = "mysql:host=".$_ENV['DB_HOST'].";dbname=".$_ENV['DB_NAME'];

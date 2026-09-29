@@ -49,7 +49,7 @@ class admin_session{
     }
 
 // Used to set the message in session 
-    public function setMessage($message, $msg_name){
+    public function setMessage(string $message,string $msg_name){
         if(isset($_SESSION["logged_in"]) && $_SESSION["logged_in"] === true && session_name() === "Admin_Alaya_cotton"){
             $_SESSION[$msg_name] = $message;
             return true;

@@ -72,7 +72,7 @@
     // Login status
         $login_status = false;
 
-        function test_input($data){
+        function test_input(string $data){
             $data = trim($data);
             $data = stripslashes($data);
             $data = htmlspecialchars($data);
