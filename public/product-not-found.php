@@ -1,34 +1,10 @@
-<?php
-    require_once __DIR__.'/../config/bootstrap.php';
-    require_once __DIR__.'/../database/db_connection.php';
-    require_once __DIR__.'/../database/product_database.php';
-// DB connection to Product Table
-    $db_conn = new db_connection();
-    $pdo = $db_conn->get_connection();
-    $product_db = new product_db($pdo);
-
-    $product_id = test_input($_GET['id'] ?? "0");
-    $product = $product_db->getProduct($product_id);
-    if($product == null) {
-        header("location: product-not-found.php");
-        exit;
-    }
-
-    function test_input(string $data){
-        $data = trim($data);
-        $data = stripslashes($data);
-        $data = htmlspecialchars($data);
-        return $data;
-    }
-
-?>
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title><?php echo $product["product_name"]?></title>
+    <title>Alaya Cottons</title>
+
 <!-- Link for Icon -->
     <link rel="icon" href="../images/brand/fevicon.ico" type="image">
 
@@ -52,10 +28,7 @@
 <!-- Fontawsome link for icons -->
     <script src="https://kit.fontawesome.com/2a292e456c.js" crossorigin="anonymous"></script>
 
-
-<!-- GSAP Link -->
-    <script src="https://cdn.jsdelivr.net/npm/gsap@3.13.0/dist/gsap.min.js"></script>
-
+    
 </head>
 <body>
 <?php
@@ -73,40 +46,19 @@
     $client_name = "";
     $client_id = "";
     $run = false;
-    $status = "Add to Wishlist";
     if($session->checkSession()){
         $client_name = $_SESSION['user_name'];
         $client_id = $_SESSION['user_id'];
         $wishlist = new wishlist($pdo, $client_id, $client_name);
     }
     if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-        if (isset($_POST["logout"])){
+        if(isset($_POST["logout"])){
             $session->logout();
-        }
-        if (isset($_POST["addToWishlist"])) {
-            if ($session->checkSession()) {
-                if ($wishlist->checkProduct($product_id)) {
-                    $status = "Already Product in your list";
-                } else {
-                    $result = $wishlist->addProduct($product_id, $product["product_name"]);
-                    if ($result == 0) {
-                        $status = "server issue Product Not Added";
-                    } elseif ($result == 1) {
-                        $status = "Product Added to Wishlist";
-                    } elseif ($result == 2) {
-                        $status = "Product Already present in list";
-                    } else {
-                        $status = "Server Issue something went wrong";
-                    }
-                }
-            }else {
-                $status = "Login to Add product";
-            }
         }
     }
 
-
 ?>
+
 <!-- Header for Header section  -->
     <header class=" container-fluid bg-white border border-2 border-top-0 border-start-0 border-end-0 border-warning px-0 sticky-top">
     <!-- Main bar Icons and Logo -->
@@ -295,110 +247,11 @@
 
         </div>
     </header>
-<!-- Section for Product -->
-    <section class="product">
-        <div class="container-fluid">
-            <div class="row">
-            <!-- Product Image Column -->
-                <div class="product-img col-xl-6 col-lg-6 col-md-6 col-sm-12 col-12">
-                    <div class="row px-2">
-                    <!-- Images thumbnails -->
-                        <div class="thumbnails col-xl-2 col-lg-2 col-md-2 col-sm-2 col-2  ">
-                            <?php
-                                for ($i = 1; $i <= 5; $i++) {
-                                    $uniqName = "img".$i."_uniqname";
-                                    $thumbImg = "<div class='img-tile d-flex justify-content-center align-items-center'>
-                                                    <button class='img-btn'>
-                                                        <img src='../product-images/$product[$uniqName]' alt='Alaya cotton shirt'>
-                                                    </button>
-                                                </div>";
-                                    if ($product[$uniqName] !== "null") {
-                                        echo $thumbImg;
-                                    }else {
-                                        break;
-                                    }
-                                }
-                            ?>
-                            
-                        </div>
-                        
-                    <!-- Main Image -->
-                        <div class="img-box col-xl-10 col-lg-10 col-md-10 col-sm-10 col-10 d-flex justify-content-center align-items-center ">
-                            <img class="main-img" src="../product-images/<?php echo $product["img1_uniqname"]; ?>" alt="Alaya cotton shirts">
-                        </div>  
-                    </div>
 
-                </div>
-
-            <!-- Product Details column -->
-                <div class="product-details col-xl-6 col-lg-6 col-md-6 col-sm-12 col-12 py-4" id="<?php echo $product["product_id"];?>" >
-                <!-- Product Name -->
-                    <h3 class="p-name my-3">
-                        <?php echo $product["product_name"];?>
-                    </h3>
-                    <form action="" method="POST">
-                        <button class="addToWishlist btn border border-0 text-success fw-bold position-relative " name="addToWishlist" >
-                            <i class="fa-solid fa-heart"></i>  <?php echo $status ?> 
-                            <span class="tooltip-right"></span>
-                        </button>
-                    </form>
-
-                    <p class="fw-bold fs-4 text-danger my-3">
-                        Rs. <?php echo $product["sell_price"];?>/-
-                    </p>
-
-                    <hr>
-                <!-- Product description -->
-                    <p class="my-3 ">
-                        <?php echo $product["product_description"];?>
-                    </p>
-
-                <!-- Size Guide button -->
-                    <div class="container px-0 py-3">
-                        <button class="btn btn-warning focus-ring focus-ring-warning fw-semibold">Size Guide</button>
-                    </div>
-
-                <!-- Product size -->
-                    <h5 class="mt-3">size</h5>
-                    <div class="container gap-3 d-flex justify-content-start align-items-center py-2 px-0">
-                    <!-- Check Box for "S" -->
-                        <input type="radio" id="s-check" class="btn-check" value="s" name="size" checked>
-                        <label for="s-check" class="btn btn-outline-dark">S</label>
-                    <!-- Check Box for "M" -->
-                        <input type="radio" id="m-check" class="btn-check" value="m" name="size">
-                        <label for="m-check" class="btn btn-outline-dark">M</label>
-                    <!-- Check Box for "L" -->
-                        <input type="radio" id="l-check" class="btn-check" value="l" name="size">
-                        <label for="l-check" class="btn btn-outline-dark">L</label>
-                    <!-- Check Box for "XL" -->
-                        <input type="radio" id="xl-check" class="btn-check" value="xl" name="size">
-                        <label for="xl-check" class="btn btn-outline-dark">XL</label>
-                    <!-- Check Box for "XXL" -->
-                        <input type="radio" id="xxl-check" class="btn-check" value="xxl" name="size">
-                        <label for="xxl-check" class="btn btn-outline-dark">XXL</label>                           
-                    </div>
-
-                <!-- Product sleeve type -->
-                    <h5 class="mt-3">Sleeve</h5>
-                    <div class="container gap-3 d-flex justify-content-start align-items-center py-2 px-0">
-                    <!-- Check Box for "Full Sleeve" -->
-                        <input type="radio" id="fullsleeve" class="btn-check" value="fullsleeve" name="sleeve" checked>
-                        <label for="fullsleeve" class="btn btn-outline-dark">Full Sleeve</label>
-                    <!-- Check Box for "Half Sleeve" -->
-                        <input type="radio" id="halfsleeve" class="btn-check" value="halfsleeve" name="sleeve">
-                        <label for="halfsleeve" class="btn btn-outline-dark">Half Sleeve</label>
-                    </div>
-
-                <!-- Product Add to cart and Buy button -->
-                    <div class="container p-3 my-3 d-flex align-items-center justify-content-center gap-4 border border-2 border-start-0 border-end-0 ">
-                        <button class="addcart btn btn-danger focus-ring focus-ring-danger w-50">Add to Cart</button>
-                        <button class="buy btn btn-success focus-ring focus-ring-success w-50">Buy Now</button>
-                    </div>
-
-                </div>
-            </div>
-        </div>
-    </section>
+    <div class="container-fluid bg-white d-flex justify-content-center align-items-center flex-column" style="height:50vh!important;">
+        <b class="fs-3">Product Not found</b>
+        <a href="/index.php" class="btn btn-warning mt-3">Return to Home</a>
+    </div>
 
 <!-- Footer for footer section  -->
     <footer class="footer container-fluid">
@@ -687,7 +540,5 @@
 
 <!-- Script for custom script file -->
     <script src="../js/script.js"></script>
-    <script src="../js/wishlist.js"></script>
-    <script src="../js/product-view.js"></script>
 </body>
 </html>

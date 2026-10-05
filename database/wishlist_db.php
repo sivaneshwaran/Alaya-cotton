@@ -14,7 +14,7 @@ class wishlist{
 
 
 // Adds the product to wishlist (return type: int ? 0=> Not add, 1=> Added, 2=> Already present)
-    public function addProduct($product_id, $product_name){
+    public function addProduct(string $product_id, string $product_name){
         $query = "INSERT INTO wishlist(client_id, client_name, product_id, product_name) VALUES(:client_id, :client_name, :product_id, :product_name)";
 
         if($this->checkProduct($product_id)){
@@ -39,7 +39,7 @@ class wishlist{
     }
 
 // Removes the product from wishlist (return type: Boolean ? True=>Product removed, False=>Product not removed)
-    public function remove($product_id){
+    public function remove(string $product_id){
         $query = "DELETE FROM wishlist WHERE client_id = :client_id AND product_id = :product_id";
 
         try{
@@ -52,20 +52,19 @@ class wishlist{
             return true;
         }  catch(PDOException $e){
             $this->pdo_error = $e->getMessage();
-            // echo $this->pdo_error;
             return false;
         }
     }
 
 // Count the number of wishlist product
-    public function count_product(){
+    public function count_product() {
         $list = $this->getlist();
 
         return count($list ?? []);
     }
 
 // Check presence of product in wishlist (return type: Boolean ? True=> Present, False=> Absent)
-    public function checkProduct($product_id){
+    public function checkProduct(string $product_id){
         try{
             $query = "SELECT * FROM wishlist WHERE client_id = :client_id AND product_id = :product_id";
 
@@ -81,9 +80,7 @@ class wishlist{
                 return false;
             }
         }catch(PDOException $e){
-            $this->pdo_error;
-            // echo $e->getMessage();
-            
+            $this->pdo_error = $e->getMessage();
             return false ;
         }
     }

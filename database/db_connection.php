@@ -1,7 +1,7 @@
 <?php
 class db_connection{
     private PDO $pdo;
-    private string $pdo_error;
+    private ?string $pdo_error = null;
 
     public function __construct(){
         $dns = "mysql:host=".$_ENV['DB_HOST'].";dbname=".$_ENV['DB_NAME'];
@@ -14,7 +14,7 @@ class db_connection{
                 PDO::ATTR_DEFAULT_FETCH_MODE => PDO::FETCH_ASSOC
             ]);
         }catch(PDOException $e){
-            $this->pdo_error;
+            $this->pdo_error = $e->getMessage();
             throw new RuntimeException("Database connection failed: ". $e->getMessage());
         }
     }

@@ -53,7 +53,7 @@
             $client_name = $_SESSION['user_name'];
             $client_id = $_SESSION['user_id'];
             $wishlist = new wishlist($pdo, $client_id, $client_name);
-            header("location: \index.php");
+            header("location: /index.php");
             exit;
         }
         if ($_SERVER['REQUEST_METHOD'] === 'POST') {

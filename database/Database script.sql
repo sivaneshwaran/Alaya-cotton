@@ -107,6 +107,7 @@ INSERT INTO wishlist(client_id, client_name, product_id, product_name) values(2,
 SELECT * FROM wishlist;
 DROP TABLE wishlist;
 TRUNCATE wishlist;
+DELETE FROM wishlist WHERE client_id = AND product_id = 
 
 -- Session management table 
 CREATE TABLE user_session(

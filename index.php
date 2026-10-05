@@ -9,7 +9,7 @@
 
 <!-- Script for Bootstrap -->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.7/dist/js/bootstrap.bundle.min.js" integrity="sha384-ndDqU0Gzau9qJ1lfW4pNLlhNTkCfHzAVBReH9diLvGRem5+R9g2FzA8ZGN954O5Q" crossorigin="anonymous"></script>
-
+    
 <!-- Font link -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -21,8 +21,7 @@
 <!-- Fontawsome link for icons -->
     <script src="https://kit.fontawesome.com/2a292e456c.js" crossorigin="anonymous"></script>
 
-
-<!-- Link for Icon -->
+<!-- Link for Website Icon -->
     <link rel="icon" href="images/brand/fevicon.ico" type="image">
 
 <!-- TITLE for website -->
@@ -93,10 +92,9 @@
                  <div class="account">
                     <button class="s-btn" data-bs-custom-class="custom-tooltip" data-bs-toggle="tooltip" data-bs-title="Account " data-bs-placement="top" id="account-icon">
                         <i class="fa-solid fa-user"></i>
-                        
                     </button>
                     
-                    <div class=" account-menu p-3">
+                    <div class="account-menu p-3">
                         <?php
                             if($session->checkSession()){
                                 
@@ -437,7 +435,7 @@
                                     <i class="fa-solid fa-cart-shopping"></i>
                                 </span>
                                 <span class="icon-3">
-                                    <a href="public\product-view.php?id=1"><i class="fa-solid fa-eye"></i></a>
+                                    <a href="public/product-view.php?id=1"><i class="fa-solid fa-eye"></i></a>
                                 </span>
                                 
                             </div><!-- Icon set div is ends here -->
@@ -476,7 +474,7 @@
                                     <i class="fa-solid fa-cart-shopping"></i>
                                 </span>
                                 <span class="icon-3">
-                                    <a href="public\product-view.php?id=2"><i class="fa-solid fa-eye"></i></a>                                    
+                                    <a href="public/product-view.php?id=2"><i class="fa-solid fa-eye"></i></a>                                    
                                 </span>
                                 
                             </div><!-- Icon set div is ends here -->
@@ -517,7 +515,7 @@
                                     <i class="fa-solid fa-cart-shopping"></i>
                                 </span>
                                 <span class="icon-3">
-                                    <a href="public\product-view.php?id=3"><i class="fa-solid fa-eye"></i></a>
+                                    <a href="public/product-view.php?id=3"><i class="fa-solid fa-eye"></i></a>
                                 </span>
                                 
                             </div><!-- Icon set div is ends here -->
@@ -1134,6 +1132,7 @@
 
 <!-- Script for custom script file -->
     <script src="js/script.js"></script>
+
     
 </body>
 </html>

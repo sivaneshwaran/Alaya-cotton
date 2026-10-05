@@ -1,12 +1,14 @@
 <?php
 class product_db{
     private PDO $pdo;
-    private $pdo_error = "";
+    private ?string $pdo_error = null;
 
+// Assigns the PDO object to variable from argument
     public function __construct(PDO $pdo){
         $this->pdo = $pdo;
     }
 
+// This function used in Product updation page only 
     public function createNewProduct(string $name, string $category, string $quantity, string $buy_price, string $sell_price, string $description,array $original_names, array $unique_names, string $staff_name, string $staff_id){
         $name = $name;
         $category = $category;
@@ -16,13 +18,13 @@ class product_db{
         $description = $description;
         $staff_name = $staff_name;
         $staff_id = $staff_id;
-        echo "<script> console.log('In method')</script>";
+        // echo "<script> console.log('In method')</script>";
 
         try{
             $query = "INSERT INTO product_info(product_name, product_category, quantity, buy_price, sell_price, product_description, img1_name, img1_uniqname, img2_name, img2_uniqname, img3_name, img3_uniqname, img4_name, img4_uniqname, img5_name, img5_uniqname, staff_name, staff_id) values (:product_name, :product_category, :quantity, :buy_price, :sell_price, :product_description, :img1_name, :img1_uniqname, :img2_name, :img2_uniqname, :img3_name, :img3_uniqname, :img4_name, :img4_uniqname, :img5_name, :img5_uniqname, :staff_name, :staff_id)";
 
             $statement = $this->pdo->prepare($query);
-            echo "<script> console.log('before execute')</script>";
+            // echo "<script> console.log('before execute')</script>";
 
             $statement -> execute([
                 ':product_name' => $name,
@@ -50,14 +52,14 @@ class product_db{
         }catch(PDOException $e){
         // echo "<script> console.log('Error')</script>";
             $this->pdo_error;
-            echo $e->getMessage();
+            // echo $e->getMessage();
             
             return false;
         }
         
     }
 
-// Get Product with ID
+// Get Product using ID
     public function getProduct(string $product_id){
         try{
             $product_id = $product_id;
@@ -68,8 +70,7 @@ class product_db{
             ]);
             return $statement->fetch();
         }catch(PDOException $e){
-            $this->pdo_error;
-            $e->getMessage();
+            $this->pdo_error = $e->getMessage();
             return null;
         }  
     }

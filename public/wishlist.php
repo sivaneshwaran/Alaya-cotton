@@ -60,6 +60,18 @@
         if(isset($_POST["logout"])){
             $session->logout();
         }
+        if (isset($_POST["remove"])) {
+            try {
+                $status = $wishlist -> remove($_POST["remove"]) ?? false;
+                if ($status) {
+                    echo "removed ".$_POST['remove'];
+                } else {
+                    echo "not removed".$_POST['remove'];
+                }
+            } catch (Exception $e) {
+                echo "error";
+            }
+        }
     }
 
 ?>
@@ -167,7 +179,9 @@
                                 ."</div>
                                 <div class=\"container-fluid p-0 d-flex justify-content-between align-items-center\"> 
                                     <a href=\"product-view.php?id=".$product['product_id']."\" class=\"btn btn-warning focus-ring-warning\">View Product</a>
-                                    <button class=\"btn btn-dark\"><i class=\"fa-solid fa-trash\" onclick=\"remove()\"></i></button>
+                                    <form action=\"\" method=\"POST\">
+                                        <button class=\"remove btn btn-dark\" name=\"remove\" value=\"".$product['product_id']."\"><i class=\"fa-solid fa-trash\"></i></button>
+                                    </form>
                                 </div>
                             </div>
                         </div>";
@@ -470,12 +484,7 @@
     </footer>
 
 <script src="../js/script.js"></script>
-
-<script>
-    function remove(){
-        
-    }
-</script>
+<script src="../js/product-view.js"></script>
 
 </body>
-</html>
+</html> 

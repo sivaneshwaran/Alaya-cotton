@@ -84,7 +84,6 @@
                  <div class="account">
                     <button class="s-btn" data-bs-custom-class="custom-tooltip" data-bs-toggle="tooltip" data-bs-title="Account " data-bs-placement="top" id="account-icon">
                         <i class="fa-solid fa-user"></i>
-                        
                     </button>
                     <div class="account-menu">
                         <?php
