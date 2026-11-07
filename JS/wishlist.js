@@ -4,7 +4,6 @@ var productId = document.querySelector(".product-details").id;
 var productName = encodeURIComponent(document.querySelector(".p-name").innerText);
 
 const userId = document.cookie;
-console.log(document.cookie.length);
 
 function loadDoc(){
     const xmlHttp = new XMLHttpRequest();

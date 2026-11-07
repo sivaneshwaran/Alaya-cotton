@@ -4,6 +4,7 @@ class wishlist{
     private $pdo_error = "";  
     private ?string $client_id = null;
     private ?string $client_name = null;
+    private $db_name = "wishlist";
 
 // Constructor 
     public function __construct(PDO $pdo, string $client_id, string $client_name){
@@ -13,14 +14,14 @@ class wishlist{
     }
 
 
-// Adds the product to wishlist (return type: int ? 0=> Not add, 1=> Added, 2=> Already present)
+// Adds the product to wishlist (return type: int ? 0=> Not added, 1=> Added, 2=> Already present)
     public function addProduct(string $product_id, string $product_name){
-        $query = "INSERT INTO wishlist(client_id, client_name, product_id, product_name) VALUES(:client_id, :client_name, :product_id, :product_name)";
+        $query = "INSERT INTO $this->db_name(client_id, client_name, product_id, product_name) VALUES(:client_id, :client_name, :product_id, :product_name)";
 
-        if($this->checkProduct($product_id)){
-            return 2;
-        }else{
-            try{
+        try{
+            if ($this->checkProduct($product_id)) {
+                return 2;
+            } else {
                 $statement = $this->pdo->prepare($query);
                 $statement->execute([
                     ":client_id" => $this->client_id,
@@ -30,17 +31,17 @@ class wishlist{
                 ]);
 
                 return 1;
-            }catch(PDOException $e){
-                $this->pdo_error = $e->getMessage();
-                // echo $this->pdo_error;
-                return 0;
             }
+            } catch (PDOException $e) {
+                $this->pdo_error = $e->getMessage();
+                return 0;
         }
+        
     }
 
 // Removes the product from wishlist (return type: Boolean ? True=>Product removed, False=>Product not removed)
     public function remove(string $product_id){
-        $query = "DELETE FROM wishlist WHERE client_id = :client_id AND product_id = :product_id";
+        $query = "DELETE FROM $this->db_name WHERE client_id = :client_id AND product_id = :product_id";
 
         try{
             $statement = $this->pdo->prepare($query);
@@ -66,7 +67,7 @@ class wishlist{
 // Check presence of product in wishlist (return type: Boolean ? True=> Present, False=> Absent)
     public function checkProduct(string $product_id){
         try{
-            $query = "SELECT * FROM wishlist WHERE client_id = :client_id AND product_id = :product_id";
+            $query = "SELECT * FROM $this->db_name WHERE client_id = :client_id AND product_id = :product_id";
 
             $statement = $this->pdo->prepare($query);
             $statement -> execute([
@@ -88,7 +89,7 @@ class wishlist{
 // Get all Product (return type: Array ? array with all data)
     public function getlist(){
         try{
-            $query = "SELECT * FROM wishlist WHERE client_id = :client_id";
+            $query = "SELECT * FROM $this->db_name WHERE client_id = :client_id";
 
             $statement = $this->pdo -> prepare($query);
             $statement -> execute([
@@ -98,8 +99,6 @@ class wishlist{
             return $statement->fetchAll();
         }catch(PDOException $e){
             $this->pdo_error = $e->getMessage();
-            // echo $this->pdo_error;
-
             return false;
         }
 

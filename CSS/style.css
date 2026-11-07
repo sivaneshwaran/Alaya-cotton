@@ -539,3 +539,21 @@
     color: white;
 }
 
+.truncation-2line {
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
+    line-clamp: 2;
+    overflow: hidden;
+}
+
+.card-btn > i {
+    pointer-events: none;
+}
+
+.element-disabled {
+    pointer-events: none;
+    opacity: 0.5;
+    cursor: not-allowed;
+    user-select: none;
+}

@@ -37,6 +37,7 @@
         require_once __DIR__.'/../database/db_connection.php';
         require_once __DIR__.'/../database/user_database.php';
         require_once __DIR__."/../database/wishlist_db.php";
+        require_once __DIR__."/../database/cart_db.php";
         require_once __DIR__.'/../database/session_management.php';
         require_once __DIR__.'/../database/session_handler.php';
 
@@ -53,6 +54,7 @@
             $client_name = $_SESSION['user_name'];
             $client_id = $_SESSION['user_id'];
             $wishlist = new wishlist($pdo, $client_id, $client_name);
+            $cart_db = new cart_db($pdo, $client_id, $client_name);
             header("location: /index.php");
             exit;
         }
@@ -194,8 +196,23 @@
                     </a>
 
                 <!-- Cart icon -->
-                    <a href="cart.php" class="s-btn " data-bs-custom-class="custom-tooltip" data-bs-toggle="tooltip" data-bs-title="cart" data-bs-placement="top">
+                    <a href="cart.php" class="s-btn position-relative" data-bs-custom-class="custom-tooltip" data-bs-toggle="tooltip" data-bs-title="cart" data-bs-placement="top">
                        <i class="fa-solid fa-cart-shopping"></i>
+                        <span class="position-absolute top-0 start-100 translate-middle badge rounded text-dark border border-1 border-dark" style="background-color: #faee00; padding: 3px 3px!important;">
+                            <?php
+                                if(isset($cart_db)){
+                                    $count = $cart_db -> count_product();
+                                    if($count < 100 & $count >= 0){
+                                        echo $count;
+                                    }else{
+                                        echo "99+";
+                                    }
+                                }else{
+                                    echo "0";
+                                }
+                            ?>
+                        
+                        </span>                               
                     </a>
                    
                 </div>

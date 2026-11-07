@@ -60,19 +60,23 @@ CREATE TABLE product_info(
 drop table product_info;
 select * from product_info;
 truncate product_info;
+SELECT * FROM client_info WHERE mail_id = "siva@gmail.com" LIMIT 1;
 
 create table card_table(
 	id int auto_increment primary key,
     client_id int not null,
+    client_name varchar(255) not null,
     product_id int not null,
+    product_name tinytext not null,
     price smallint unsigned not null,
     quantity int not null,
+    thumbImg varchar(200) not null,
     added_at timestamp default current_timestamp
 );
 
 drop table card_table;
 select * from card_table;
-SELECT * FROM client_info WHERE mail_id = "siva@gmail.com" LIMIT 1;
+truncate table card_table;
 
 create table staff_details(
 	staff_id INT auto_increment primary key,
@@ -96,7 +100,8 @@ select * from staff_details;
 -- Wishlist Table
 CREATE TABLE wishlist(
 	id int auto_increment primary key,
-	data MEDIUMTEXT,
+	client_id int not null,
+    client_name tinytext not null,
     product_id int not null,
     product_name tinytext not null,
     added_at timestamp default current_timestamp
@@ -107,7 +112,9 @@ INSERT INTO wishlist(client_id, client_name, product_id, product_name) values(2,
 SELECT * FROM wishlist;
 DROP TABLE wishlist;
 TRUNCATE wishlist;
-DELETE FROM wishlist WHERE client_id = AND product_id = 
+set sql_safe_updates=0;
+DELETE FROM wishlist WHERE client_id = 1 AND product_id = 2;
+set sql_safe_updates=1;
 
 -- Session management table 
 CREATE TABLE user_session(

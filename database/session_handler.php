@@ -30,7 +30,7 @@ class session_handler implements SessionHandlerInterface{
 
 // Read the session data stored in DB
     public function read(string $id): string|false{   
-        $query = "SELECT * FROM {$this->table} WHERE session_id = :session_id";
+        $query = "SELECT * FROM $this->table WHERE session_id = :session_id";
         try{
             $statement = $this->pdo->prepare($query);
 
@@ -51,26 +51,28 @@ class session_handler implements SessionHandlerInterface{
     public function write(string $id, string $data):bool{
 
         try{
-            $query = "INSERT INTO {$this->table}(session_id, user_data, last_updated) VALUES(:session_id, :user_data, NOW()) ON DUPLICATE KEY UPDATE user_data = VALUES(user_data)  , last_updated = NOW()";
-        
-            $statement = $this->pdo->prepare($query);
-            $statement->execute([
+            $query = "INSERT INTO $this->table(session_id, user_data, last_updated) VALUES(:session_id, :user_data, NOW()) ON DUPLICATE KEY UPDATE user_data = VALUES(user_data), last_updated = NOW()";
+
+            if (!empty($data)) {     
+                $statement = $this->pdo->prepare($query);
+                $statement->execute([
                     ":session_id" => $id,
                     ":user_data" => $data,
                 ]);
-                          
+            } else {
                 return true;
+            }
+            return true;
 
         }catch(PDOException $e){
             $this->error = $e->getMessage();
-            $this->msg($e->getMessage());
             return false;
         }
     }
 
     public function destroy(string $id): bool{  
         try{
-            $query = "DELETE FROM {$this->table} WHERE session_id = :id";
+            $query = "DELETE FROM $this->table WHERE session_id = :id";
 
             $statement = $this->pdo->prepare($query);
 
@@ -80,20 +82,20 @@ class session_handler implements SessionHandlerInterface{
                  
             return true;
         }catch(PDOException $e){
-            $this->error = $e->getMessage();
-            $this->msg($e->getMessage());
-            
+            $this->error = $e->getMessage();            
             return false;
         }
     }
 
-    public function gc(int $max_lifetime): int|false{
+    public function gc($max_lifetime): int|false{
         try{
-            $query = "DELETE * FROM {$this->table} WHERE last_updated < DATE_SUB(NOW() - INTERVAL :max_lifetime SECOND)";
+            // $query = "DELETE * FROM $this->table WHERE last_updated < DATE_SUB(NOW() - INTERVAL :max_lifetime SECOND)";
+            $expiry = time()-$max_lifetime;
+            $query = "DELETE * FROM $this->table WHERE last_updated < :expiry";
 
             $statement = $this->pdo->prepare($query);
             $statement->execute([
-                "max_lifetime" => $max_lifetime
+                ":expiry" => $expiry
             ]);
             
             return $statement -> rowCount();

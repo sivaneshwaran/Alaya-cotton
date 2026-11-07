@@ -37,6 +37,7 @@
     require_once __DIR__."/../config/bootstrap.php";
     require_once __DIR__."/../database/db_connection.php";
     require_once __DIR__."/../database/wishlist_db.php";  
+    require_once __DIR__."/../database/cart_db.php";  
     require_once __DIR__."/../database/product_database.php";
     require_once __DIR__.'/../database/session_management.php';
     
@@ -55,6 +56,7 @@
         $client_name = $_SESSION['user_name'];
         $client_id = $_SESSION['user_id'];
         $wishlist = new wishlist($pdo, $client_id, $client_name);
+        $cart_db = new cart_db($pdo, $client_id, $client_name);
     }
     if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         if(isset($_POST["logout"])){
@@ -139,8 +141,23 @@
                  </div>
 
                 <!-- Cart icon -->
-                    <a href="cart.php" class="s-btn " data-bs-custom-class="custom-tooltip" data-bs-toggle="tooltip" data-bs-title="cart" data-bs-placement="top">
+                    <a href="cart.php" class="s-btn position-relative" data-bs-custom-class="custom-tooltip" data-bs-toggle="tooltip" data-bs-title="cart" data-bs-placement="top">
                        <i class="fa-solid fa-cart-shopping"></i>
+                        <span class="position-absolute top-0 start-100 translate-middle badge rounded text-dark border border-1 border-dark" style="background-color: #faee00; padding: 3px 3px!important;">
+                            <?php
+                                if(isset($cart_db)){
+                                    $count = $cart_db -> count_product();
+                                    if($count < 100 & $count >= 0){
+                                        echo $count;
+                                    }else{
+                                        echo "99+";
+                                    }
+                                }else{
+                                    echo "0";
+                                }
+                            ?>
+                        
+                        </span>                               
                     </a>
                    
                 </div>
@@ -165,9 +182,9 @@
                 if(count($list)==0){
                     echo 
                     "<div class=\"container-fluid bg-warning py-5 shadow fw-bold text-center\">
-                    Add some products to fill your wishlist
+                        Add some products to fill your wishlist
                     </div>";
-                }else{
+                } else {
                     foreach($list as $items){
                         $product = $product_db -> getProduct($items["product_id"]);
                         echo 

@@ -28,7 +28,6 @@ account_icon.addEventListener("click", ()=>{
     account_menu.classList.toggle("active");
 });
 
-console.log(navigator.userAgent);
 
 
 

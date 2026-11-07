@@ -62,6 +62,7 @@
     require_once __DIR__.'/../config/bootstrap.php';
     require_once __DIR__.'/../database/db_connection.php';
     require_once __DIR__."/../database/wishlist_db.php";
+    require_once __DIR__."/../database/cart_db.php";
     require_once __DIR__.'/../database/session_management.php';
     
 
@@ -73,36 +74,70 @@
     $client_name = "";
     $client_id = "";
     $run = false;
-    $status = "Add to Wishlist";
+    $add_wishlist_status = "Add to Wishlist";
+    $add_cart_status = "Add to Cart";
+
+// For user login check
     if($session->checkSession()){
         $client_name = $_SESSION['user_name'];
         $client_id = $_SESSION['user_id'];
         $wishlist = new wishlist($pdo, $client_id, $client_name);
+        $cart_db = new cart_db($pdo, $client_id, $client_name);
+
     }
+
     if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+    // For Logout button function
         if (isset($_POST["logout"])){
             $session->logout();
         }
+
+    // For Add to wish list function button
         if (isset($_POST["addToWishlist"])) {
             if ($session->checkSession()) {
                 if ($wishlist->checkProduct($product_id)) {
-                    $status = "Already Product in your list";
+                    $add_wishlist_status = "Already Product in your list";
                 } else {
-                    $result = $wishlist->addProduct($product_id, $product["product_name"]);
-                    if ($result == 0) {
-                        $status = "server issue Product Not Added";
-                    } elseif ($result == 1) {
-                        $status = "Product Added to Wishlist";
-                    } elseif ($result == 2) {
-                        $status = "Product Already present in list";
+                    $wishlist_result = $wishlist->addProduct($product_id, $product["product_name"]);
+                    if ($wishlist_result == 0) {
+                        $add_wishlist_status = "server issue Product Not Added";
+                    } elseif ($wishlist_result == 1) {
+                        $add_wishlist_status = "Product Added to Wishlist";
+                    } elseif ($wishlist_result == 2) {
+                        $add_wishlist_status = "Product Already present in list";
                     } else {
-                        $status = "Server Issue something went wrong";
+                        $add_wishlist_status = "Server Issue something went wrong";
                     }
                 }
             }else {
-                $status = "Login to Add product";
+                $add_wishlist_status = "Login to Add product";
             }
         }
+
+    // For Add to Cart function button
+        if (isset($_POST["addToCart"])) {
+            if ($session -> checkSession()) {
+                if ($cart_db -> checkProduct($product_id)) {
+                    $add_cart_status = "Product already in Cart";
+                } else {
+                    $cart_result = $cart_db->addProduct($product_id, $product["product_name"], $product["sell_price"], $product['img1_uniqname']);
+                    if ($cart_result == 0) {
+                        $add_cart_status = "Product Not Added";
+                    } elseif ($cart_result == 1) {
+                        $add_cart_status = "Product Added to Cart";
+                    } elseif ($cart_result == 2) {
+                        $add_cart_status = "Product Already in Cart";
+                    } else {
+                        $add_cart_status = "Something went wrong";
+                    }
+                }
+            } else {
+                header("location: login-mail.php");
+                exit();
+            }
+        }
+
+
     }
 
 
@@ -191,8 +226,23 @@
                     </a>
 
                 <!-- Cart icon -->
-                    <a href="cart.php" class="s-btn " data-bs-custom-class="custom-tooltip" data-bs-toggle="tooltip" data-bs-title="cart" data-bs-placement="top">
+                    <a href="cart.php" class="s-btn position-relative" data-bs-custom-class="custom-tooltip" data-bs-toggle="tooltip" data-bs-title="cart" data-bs-placement="top">
                        <i class="fa-solid fa-cart-shopping"></i>
+                        <span class="position-absolute top-0 start-100 translate-middle badge rounded text-dark border border-1 border-dark" style="background-color: #faee00; padding: 3px 3px!important;">
+                            <?php
+                                if(isset($cart_db)){
+                                    $count = $cart_db -> count_product();
+                                    if($count < 100 & $count >= 0){
+                                        echo $count;
+                                    }else{
+                                        echo "99+";
+                                    }
+                                }else{
+                                    echo "0";
+                                }
+                            ?>
+                        
+                        </span>                 
                     </a>
                    
                 </div>
@@ -331,17 +381,15 @@
                 </div>
 
             <!-- Product Details column -->
-                <div class="product-details col-xl-6 col-lg-6 col-md-6 col-sm-12 col-12 py-4" id="<?php echo $product["product_id"];?>" >
+                <form  action="" method="POST" class="product-details col-xl-6 col-lg-6 col-md-6 col-sm-12 col-12 py-4" id="<?php echo $product["product_id"];?>" >
                 <!-- Product Name -->
                     <h3 class="p-name my-3">
                         <?php echo $product["product_name"];?>
                     </h3>
-                    <form action="" method="POST">
                         <button class="addToWishlist btn border border-0 text-success fw-bold position-relative " name="addToWishlist" >
-                            <i class="fa-solid fa-heart"></i>  <?php echo $status ?> 
+                            <i class="fa-solid fa-heart"></i>  <?php echo $add_wishlist_status ?> 
                             <span class="tooltip-right"></span>
                         </button>
-                    </form>
 
                     <p class="fw-bold fs-4 text-danger my-3">
                         Rs. <?php echo $product["sell_price"];?>/-
@@ -391,11 +439,15 @@
 
                 <!-- Product Add to cart and Buy button -->
                     <div class="container p-3 my-3 d-flex align-items-center justify-content-center gap-4 border border-2 border-start-0 border-end-0 ">
-                        <button class="addcart btn btn-danger focus-ring focus-ring-danger w-50">Add to Cart</button>
-                        <button class="buy btn btn-success focus-ring focus-ring-success w-50">Buy Now</button>
+                        <button class="addcart btn btn-danger focus-ring focus-ring-danger w-50" name="addToCart">
+                            <?php 
+                                echo $add_cart_status;
+                            ?>
+                        </button>
+                        <button class="buy btn btn-success focus-ring focus-ring-success w-50" name="buy">Buy Now</button>
                     </div>
 
-                </div>
+                </form>
             </div>
         </div>
     </section>
