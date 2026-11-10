@@ -60,7 +60,7 @@ CREATE TABLE product_info(
 drop table product_info;
 select * from product_info;
 truncate product_info;
-SELECT * FROM client_info WHERE mail_id = "siva@gmail.com" LIMIT 1;
+DELETE FROM product_info WHERE product_id IN (1, 2, 3, 4);
 
 create table card_table(
 	id int auto_increment primary key,

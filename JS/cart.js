@@ -1,4 +1,5 @@
 const display = document.querySelector('.display');
+loadCard();
 
 // Button Click event listner for product increase, decrease and remove actions
 display.addEventListener('click', async (e) => {
@@ -91,7 +92,8 @@ display.addEventListener('click', async (e) => {
 // Request Card for load full data of card items from backend
 async function reqCart () {
     try {
-        const res = await fetch("/backend/cart-backend.php", {
+        console.log('reqCart function')
+        const res = await fetch("../backend/cart-backend.php", {
             method: "POST",
             headers: {
                 'Content-type': 'application/json',
@@ -145,7 +147,7 @@ function removeBtn(value) {
 
 async function increaseQuantity (product_id) {
     try {
-        const res = await fetch("http://localhost:3000/backend/cart-backend.php", {
+        const res = await fetch("/./backend/cart-backend.php", {
             method: "POST",
             headers: {
                 'Content-type': 'application/json',
@@ -176,7 +178,7 @@ async function increaseQuantity (product_id) {
 
 async function decreaseQuantity (product_id) {
     try {
-        const res = await fetch("http://localhost:3000/backend/cart-backend.php", {
+        const res = await fetch("/./backend/cart-backend.php", {
             method: "POST",
             headers: {
                 'Content-type': 'application/json',
@@ -206,7 +208,7 @@ async function decreaseQuantity (product_id) {
 
 async function removeProduct (product_id) {
     try {
-        const res = await fetch("http://localhost:3000/backend/cart-backend.php", {
+        const res = await fetch("/./backend/cart-backend.php", {
             method: "POST",
             headers: {
                 'Content-type': 'application/json',
@@ -235,7 +237,7 @@ async function removeProduct (product_id) {
 }
 
 
-window.addEventListener ('load', async () => {
+async function loadCard () {
     display.textContent = "loading...";
 
     try {
@@ -288,9 +290,17 @@ window.addEventListener ('load', async () => {
             console.log(data);
         }
     } catch (error) {
-        display.textContent = "error" + error.message;
+        display.textContent = 'Something went wrong';
     }
 
-});
+}
+
+// if (document.readyState === 'loading') {
+//     console.log('loaded');
+//     document.addEventListener("DOMContentLoaded", loadCard);
+// } else {
+//     console.log('direct')
+//     loadCard();
+// }
 
 

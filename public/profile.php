@@ -86,7 +86,7 @@
             <!-- column 2 for logo -->
                 <div class="col-lg-8 col-md-8 col-sm-8 col-5 d-flex align-middle justify-content-center py-3 ">
                     <a href="/index.php">
-                        <img src="../images/brand/alaya-logo.jpg" alt="Alaya logo image" title="Alaya logo image"  width="150px" class="logo-icon">
+                        <img src="../images/brand/alaya-logo.webp" alt="Alaya logo image" title="Alaya logo image"  width="150px" class="logo-icon">
                     </a>
                 </div>
 

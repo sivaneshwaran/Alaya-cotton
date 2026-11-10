@@ -41,7 +41,7 @@
     <!-- Column for sidebar -->
         <div class="sidebar"> 
             <div class="container-fluid p-0 d-flex justify-content-center align-items-center flex-column mb-5 mt-2">
-                <img src="/Images/Raw images/Alaya-Logo---English_01.jpg" alt="Alaya cotton logo" class="logo">
+                <img src="/Images/brand/alaya-logo.webp" alt="Alaya cotton logo" class="logo">
             </div>
             <ul class="menu">
                 <li><button class="menu-item active-menu" onclick="show()" id="analysis-btn"><i class="fa-solid fa-chart-line"></i> Analysis</button></li>

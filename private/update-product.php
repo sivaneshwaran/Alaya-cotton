@@ -6,7 +6,7 @@
     <title>Product Updation</title>
 
 <!-- Link for Icon -->
-    <link rel="icon" href="/Images/Raw images/fevicon.ico" type="image">
+    <link rel="icon" href="/Images/brand/alaya-logo.webp" type="image">
 
 <!-- Link for Bootstrap -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.7/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-LN+7fdVzj6u52u30Kp6M/trliBMCMKTyK833zpbD+pXdCLuTusPj697FH4R/5mcr" crossorigin="anonymous">
@@ -48,11 +48,11 @@
     header("Cache-Control: no-store, no-cache, must-revalidate, max-age=0");
     header("Cache-Control: post-check=0, pre-check=0", false);
     header("Pragma: no-cache");
-    require_once __DIR__.'\..\config\bootstrap.php';
-    require_once __DIR__.'\..\database\db_connection.php';
-    require_once __DIR__.'\..\database\user_database.php';
-    require_once __DIR__.'\..\database\session_management.php';
-    require_once __DIR__.'\..\database\product-database.php';
+    require __DIR__.'/../config/bootstrap.php';
+    require __DIR__.'/../database/db_connection.php';
+    require __DIR__.'/../database/user_database.php';
+    require __DIR__.'/../database/session_management.php';
+    require __DIR__.'/../database/product_database.php';
 
 // Creating objects for Database connection
     $dbConn = new db_connection();
@@ -65,7 +65,7 @@
     $max_size = 2*1024*1024;
     $total_size = 0;
     $allowed_formats = ['jpg', 'jpeg', 'png', 'webp'];
-    $upload_Dir = __DIR__."\..\product-images\\";
+    $upload_Dir = __DIR__."/../product-images//";
     $product_img_name = array();
     $product_name = $product_category = $quantity = $buy_price = $sell_price = $product_description = "";
     $staff_name = $staff_id = "";
@@ -202,7 +202,7 @@
             <!-- Logo -->
                 <div class="col-lg-12 col-md-12 col-sm-12 col-12 d-flex align-middle justify-content-center py-3 ">
                     <a href="/index.php">
-                        <img src="/Images/Raw images/Alaya-Logo---English_01.jpg" alt="Alaya logo image" title="Alaya logo image"  width="150px" class="logo-icon">
+                        <img src="/Images/brand/alaya-logo.webp" alt="Alaya logo image" title="Alaya logo image"  width="150px" class="logo-icon">
                     </a>
                 </div>
             </div>

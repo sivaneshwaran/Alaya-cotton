@@ -84,7 +84,7 @@
             <!-- column 2 for logo -->
                 <div class="col-lg-8 col-md-8 col-sm-8 col-5 d-flex align-middle justify-content-center py-3 ">
                     <a href="index.php">
-                        <img src="images/brand/alaya-logo.jpg" alt="Alaya logo image" title="Alaya logo image"  width="150px" class="logo-icon">
+                        <img src="images/brand/alaya-logo.webp" alt="Alaya logo image" title="Alaya logo image"  width="150px" class="logo-icon">
                     </a>
                 </div>
 
@@ -280,13 +280,13 @@
         <div id="carouselExampleAutoplaying" class="carousel slide" data-bs-ride="carousel" data-bs-interval="2500">
             <div class="carousel-inner">
                 <div class="carousel-item active">
-                <img src="images/display-images/carousal-1.jpeg" class="d-block w-100" alt="...">
+                <img src="images/display-images/carousal-1.webp" class="d-block w-100" alt="...">
                 </div>
                 <div class="carousel-item">
-                <img src="images/display-images/carousal-2.jpeg" class="d-block w-100" alt="...">
+                <img src="images/display-images/carousal-2.webp" class="d-block w-100" alt="...">
                 </div>
                 <div class="carousel-item">
-                <img src="images/display-images/carousal-3.jpeg" class="d-block w-100" alt="...">
+                <img src="images/display-images/carousal-3.webp" class="d-block w-100" alt="...">
                 </div>
             </div>
             <button class="carousel-control-prev " type="button" data-bs-target="#carouselExampleAutoplaying" data-bs-slide="prev">
@@ -379,7 +379,7 @@
         <div class="row">
             <div class="col-lg-3 col-md-3 col-sm-3 col-6 d-flex ">
                 <div class=" w-25">
-                    <img src="images/icon-images/payments.png" alt="Payment option image for alayas" title="Payment option image for alayas" class="img-fluid" width="35px">
+                    <img src="images/icon-images/payments.webp" alt="Payment option image for alayas" title="Payment option image for alayas" class="img-fluid" width="35px">
                 </div>
                 <div >
                     <h4>
@@ -390,7 +390,7 @@
             </div>
             <div class="col-lg-3 col-md-3 col-sm-3 col-6 d-flex ">
                 <div class=" w-25">
-                    <img src="images/icon-images/box.png" alt="Shipping image for alayas" title="Shipping image for alayas" class="img-fluid" width="35px">
+                    <img src="images/icon-images/box.webp" alt="Shipping image for alayas" title="Shipping image for alayas" class="img-fluid" width="35px">
                 </div>
                 <div >
                     <h4>
@@ -400,7 +400,7 @@
                 </div>
             </div><div class="col-lg-3 col-md-3 col-sm-3 col-6 d-flex ">
                 <div class=" w-25">
-                    <img src="images/icon-images/exchange.png" alt="Exchange image for alayas" title="Exchange image for alayas" class="img-fluid" width="35px">
+                    <img src="images/icon-images/exchange.webp" alt="Exchange image for alayas" title="Exchange image for alayas" class="img-fluid" width="35px">
                 </div>
                 <div >
                     <h4>
@@ -410,7 +410,7 @@
                 </div>
             </div><div class="col-lg-3 col-md-3 col-sm-3 col-6 d-flex ">
                 <div class=" w-25">
-                    <img src="images/icon-images/call-support.png" alt="Online Chat Support image for alayas" title="Online Chat Support image for alayas" class="img-fluid" width="35px">
+                    <img src="images/icon-images/call-support.webp" alt="Online Chat Support image for alayas" title="Online Chat Support image for alayas" class="img-fluid" width="35px">
                 </div>
                 <div >
                     <h4>
@@ -428,7 +428,7 @@
         <div class="row">
         <!-- Single image column -->
             <div class="single-img col-lg-6 col-md-12 col-sm-12 col-xs-12 ">
-                <img src="images/display-images/kondattam-tissue-set.jpg" alt="Alaya shirt image" title="Alaya shirt image" class="img-fluid">
+                <img src="images/display-images/kondattam-tissue-set.webp" alt="Alaya shirt image" title="Alaya shirt image" class="img-fluid">
             </div>
 
         <!-- Four image column -->
@@ -438,160 +438,78 @@
                 <div class="row d-flex justify-content-around p-3">
                 <!-- column 1 -->
                     <div class="col-6 img-col d-flex flex-column align-items-center">
+                        <a href="public/product-view.php?id=5" class="product-link">
                     <!-- Image 1 -->
-                        <div class="images d-flex flex-column align-items-center">
-                            <img src="images/product-images/copper-shirt/copper-shirt-1.png" alt="Alaya cotton shirt" class="img-top img-fluid">
-                            <img src="images/product-images/copper-shirt/copper-shirt-2.png" alt="Alaya cotton shirt" class="img-under img-fluid">
-
-                        <!-- Icon set div -->
-                            <div class="icon-set ">  
-                                <span class="icon-1">
-                                    <i class="fa-solid fa-heart "></i>
-                                </span>
-                                <span class="icon-2">
-                                    <i class="fa-solid fa-cart-shopping"></i>
-                                </span>
-                                <span class="icon-3">
-                                    <a href="public/product-view.php?id=1"><i class="fa-solid fa-eye"></i></a>
-                                </span>
-                                
-                            </div><!-- Icon set div is ends here -->
+                        <div class="images d-flex flex-column align-items-center w-100">
+                            <img src="images/product-images/copper-shirt/copper-shirt-1.webp" alt="Alaya cotton shirt" class="img-top img-fluid">
+                            <img src="images/product-images/copper-shirt/copper-shirt-2.webp" alt="Alaya cotton shirt" class="img-under img-fluid">
                         </div>
                     
 
                     <!-- Div for information -->
                         <div class="info">
                             <p><b>Kondattam Copper Tissue Shirt & Copper Jari Border Dhoti Set</b></p>
-                            <p>
-                                <i class="fa-solid fa-star text-warning"></i>
-                                <i class="fa-solid fa-star text-warning"></i>
-                                <i class="fa-solid fa-star text-warning"></i>
-                                <i class="fa-solid fa-star text-warning"></i>
-                                <i class="fa-solid fa-star text-warning"></i>
-                                <span>1 review  | <span><i class="fa-solid fa-comments"></i> 1 question</span></span>
-                            </p>
                             <p>Rs. 1,500.00</p>
                         </div>
+                        </a>
                     </div><!-- Image Column 1 div ends here -->
                     
 
                 <!-- column 2 -->
                     <div class="col-6 img-col d-flex flex-column align-items-center">
+                        <a href="public/product-view.php?id=6" class="product-link">
                     <!-- Image 2 -->
-                        <div class="images d-flex flex-column align-items-center">
-                            <img src="images/product-images/gold-border-shirt/gold-shirt-1.png" alt="Alaya cotton gold shirt" class="img-top img-fluid">
-                            <img src="images/product-images/gold-border-shirt/gold-shirt-2.png" alt="Alaya cotton gold shirt" class="img-under img-fluid">
-
-                        <!-- Icon set div -->
-                            <div class="icon-set ">  
-                                <span class="icon-1">
-                                    <i class="fa-solid fa-heart "></i>
-                                </span>
-                                <span class="icon-2">
-                                    <i class="fa-solid fa-cart-shopping"></i>
-                                </span>
-                                <span class="icon-3">
-                                    <a href="public/product-view.php?id=2"><i class="fa-solid fa-eye"></i></a>                                    
-                                </span>
-                                
-                            </div><!-- Icon set div is ends here -->
+                        <div class="images d-flex flex-column align-items-center w-100">
+                            <img src="images/product-images/gold-border-shirt/gold-shirt-1.webp" alt="Alaya cotton gold shirt" class="img-top img-fluid">
+                            <img src="images/product-images/gold-border-shirt/gold-shirt-2.webp" alt="Alaya cotton gold shirt" class="img-under img-fluid">
                         </div>
-                    
 
                     <!-- Div for information -->
                         <div class="info">
                             <p><b>Kondattam Tissue Shirt & Dhoti Set- Gold</b></p>
-                            <!-- <p>
-                                <i class="fa-solid fa-star text-warning"></i>
-                                <i class="fa-solid fa-star text-warning"></i>
-                                <i class="fa-solid fa-star text-warning"></i>
-                                <i class="fa-solid fa-star text-warning"></i>
-                                <i class="fa-solid fa-star text-warning"></i>
-                                <span>1 review  | <span><i class="fa-solid fa-comments"></i> 1 question</span></span>
-                            </p> -->
                             <p>Rs. 1,500.00</p>
                         </div>
                     </div><!-- Image Column 2 div ends here -->
+                    </a>   
                 </div><!-- Row div ends here -->
 
             <!-- Row 2 for another 2 shirts -->
                 <div class="row d-flex justify-content-around p-3">
+                    <a href="public/product-view.php?id=7" class="product-link">
                 <!-- column 3 -->
                     <div class="col-6 img-col d-flex flex-column align-items-center">
                     <!-- Image 3 -->
-                        <div class="images d-flex flex-column align-items-center">
-                            <img src="images/product-images/silver-shirt/silver-shirt-1.png" alt="Alaya cotton silver shirt" class="img-top img-fluid">
-                            <img src="images/product-images/silver-shirt/silver-shirt-2.png" alt="Alaya cotton silver shirt" class="img-under img-fluid">
-
-                        <!-- Icon set div -->
-                            <div class="icon-set ">   
-                                <span class="icon-1">
-                                    <i class="fa-solid fa-heart "></i>
-                                </span>
-                                <span class="icon-2">
-                                    <i class="fa-solid fa-cart-shopping"></i>
-                                </span>
-                                <span class="icon-3">
-                                    <a href="public/product-view.php?id=3"><i class="fa-solid fa-eye"></i></a>
-                                </span>
-                                
-                            </div><!-- Icon set div is ends here -->
+                        <div class="images d-flex flex-column align-items-center w-100">
+                            <img src="images/product-images/silver-shirt/silver-shirt-1.webp" alt="Alaya cotton silver shirt" class="img-top img-fluid">
+                            <img src="images/product-images/silver-shirt/silver-shirt-2.webp" alt="Alaya cotton silver shirt" class="img-under img-fluid">
                         </div>
                     
                     
                     <!-- Div for information -->
                         <div class="info">
                             <p><b>Kondattam Silver Tissue Shirt & Silver Jari Border Dhoti Set</b></p>
-                            <!-- <p>
-                                <i class="fa-solid fa-star text-warning"></i>
-                                <i class="fa-solid fa-star text-warning"></i>
-                                <i class="fa-solid fa-star text-warning"></i>
-                                <i class="fa-solid fa-star text-warning"></i>
-                                <i class="fa-solid fa-star text-warning"></i>
-                                <span>1 review  | <span><i class="fa-solid fa-comments"></i> 1 question</span></span>
-                            </p> -->
                             <p>Rs. 1,575.00</p>
                         </div>
+                        </a>
                     </div><!-- Image Column 3 div ends here -->
                     
 
                 <!-- column 4 -->
                     <div class="col-6 img-col d-flex flex-column align-items-center">
+                        <a href="public/product-view.php?id=8" class="product-link">
                     <!-- Image 4 -->
-                        <div class="images d-flex flex-column align-items-center">
-                            <img src="images/product-images/blue-shirt/blue-shirt-1.png" alt="Alaya cotton blue shirt" class="img-top img-fluid">
-                            <img src="images/product-images/blue-shirt/blue-shirt-2.png" alt="Alaya cotton blue shirt" class="img-under img-fluid">
-
-                        <!-- Icon set div -->
-                            <div class="icon-set ">  
-                                <span class="icon-1">
-                                    <i class="fa-solid fa-heart "></i>
-                                </span>
-                                <span class="icon-2">
-                                    <i class="fa-solid fa-cart-shopping"></i>
-                                </span>
-                                <span class="icon-3">
-                                    <a href="public/product-view.php?id=4"><i class="fa-solid fa-eye"></i></a>
-                                    
-                                </span>
-                                
-                            </div><!-- Icon set div is ends here -->
+                        <div class="images d-flex flex-column align-items-center w-100">
+                            <img src="images/product-images/blue-shirt/blue-shirt-1.webp" alt="Alaya cotton blue shirt" class="img-top img-fluid">
+                            <img src="images/product-images/blue-shirt/blue-shirt-2.webp" alt="Alaya cotton blue shirt" class="img-under img-fluid">
                         </div>
                     
                     
                     <!-- Div for information -->
                         <div class="info">
                             <p><b>Kondattam Grand Tissue Shirt & Dhoti Combo - Blue Hosta</b></p>
-                            <p>
-                                <i class="fa-solid fa-star text-warning"></i>
-                                <i class="fa-solid fa-star text-warning"></i>
-                                <i class="fa-solid fa-star text-warning"></i>
-                                <i class="fa-solid fa-star text-warning"></i>
-                                <i class="fa-regular fa-star text-warning"></i>
-                                <span>1 review  | <span><i class="fa-solid fa-comments"></i> 1 question</span></span>
-                            </p>
                             <p>Rs. 1,575.00</p>
                         </div>
+                    </a>
                     </div><!-- Image Column 4 div ends here -->
                 </div>
                 <!-- Row div for another 2 shirts ends here -->
@@ -607,225 +525,105 @@
 
     <!-- Item 1 -->
         <div class="col-xl-2 col-lg-2 col-md-3 col-sm-3 col-6  ">
+            <a href="public/product-view.php?id=6" class="product-link">
         <!-- Image 1 -->
             <div class="images d-flex flex-column align-items-center">
-                <img src="images/product-images/gold-border-shirt/gold-shirt-1.png" alt="" class="img-top img-fluid">
-                <img src="images/product-images/gold-border-shirt/gold-shirt-2.png" alt="" class="img-under img-fluid">
-            
-            <!-- Icon set div -->
-                <div class="icon-set ">  
-                    <span class="icon-1">
-                        <i class="fa-solid fa-heart "></i>
-                    </span>
-                    <span class="icon-2">
-                        <i class="fa-solid fa-cart-shopping"></i>
-                    </span>
-                    <span class="icon-3">
-                        <i class="fa-solid fa-eye"></i>
-                    </span>
-                    
-                </div><!-- Icon set div is ends here -->
-            </div>
-                    
+                <img src="images/product-images/gold-border-shirt/gold-shirt-1.webp" alt="" class="img-top img-fluid">
+                <img src="images/product-images/gold-border-shirt/gold-shirt-2.webp" alt="" class="img-under img-fluid">
+            </div>                    
 
             <!-- Div for information -->
                 <div class="info">
                     <p><b>Kondattam Tissue Shirt & Dhoti Set- Gold</b></p>
-                    <!-- <p>
-                        <i class="fa-solid fa-star text-warning"></i>
-                        <i class="fa-solid fa-star text-warning"></i>
-                        <i class="fa-solid fa-star text-warning"></i>
-                        <i class="fa-solid fa-star text-warning"></i>
-                        <i class="fa-solid fa-star text-warning"></i>
-                        <span>1 review  | <span><i class="fa-solid fa-comments"></i> 1 question</span></span>
-                    </p> -->
                     <p>Rs. 1,500.00</p>
                 </div>
+            </a>
         </div><!-- Item 1 ends here -->
+
     <!-- Item 2 -->
         <div class="col-xl-2 col-lg-2 col-md-3 col-sm-3 col-6 ">
+            <a href="public/product-view.php?id=5" class="product-link">
         <!-- Image 2 -->
             <div class="images d-flex flex-column align-items-center">
-                <img src="images/product-images/copper-shirt/copper-shirt-1.png" alt="" class="img-top img-fluid">
-                <img src="images/product-images/copper-shirt/copper-shirt-2.png" alt="" class="img-under img-fluid">
-
-            <!-- Icon set div -->
-                <div class="icon-set ">  
-                    <span class="icon-1">
-                        <i class="fa-solid fa-heart "></i>
-                    </span>
-                    <span class="icon-2">
-                        <i class="fa-solid fa-cart-shopping"></i>
-                    </span>
-                    <span class="icon-3">
-                        <i class="fa-solid fa-eye"></i>
-                    </span>
-                    
-                </div><!-- Icon set div is ends here -->
-            </div>
-        
+                <img src="images/product-images/copper-shirt/copper-shirt-1.webp" alt="" class="img-top img-fluid">
+                <img src="images/product-images/copper-shirt/copper-shirt-2.webp" alt="" class="img-under img-fluid">
+            </div>        
 
         <!-- Div for information -->
             <div class="info">
                 <p><b>Kondattam Copper Tissue Shirt & Copper Jari Border Dhoti Set</b></p>
-                <!-- <p>
-                    <i class="fa-solid fa-star text-warning"></i>
-                    <i class="fa-solid fa-star text-warning"></i>
-                    <i class="fa-solid fa-star text-warning"></i>
-                    <i class="fa-solid fa-star text-warning"></i>
-                    <i class="fa-solid fa-star text-warning"></i>
-                    <span>1 review  | <span><i class="fa-solid fa-comments"></i> 1 question</span></span>
-                </p> -->
                 <p>Rs. 1,500.00</p>
             </div>
+            </a>
         </div><!-- Item 2 ends here -->
+
     <!-- Item 3 -->
         <div class="col-xl-2 col-lg-2 col-md-3 col-sm-3 col-xs-6 d-none d-md-block ">
+            <a href="public/product-view.php?id=11" class="product-link">
         <!-- Image 4 -->
             <div class="images d-flex flex-column align-items-center">
                 <img src="images/product-images/green-shirt/green-shirt-1.webp" alt="Alaya Green shirt" class="img-top img-fluid">
                 <img src="images/product-images/green-shirt/green-shirt-2.webp" alt="Alaya Green shirt" class="img-under img-fluid">
-
-            <!-- Icon set div -->
-                <div class="icon-set ">  
-                    <span class="icon-1">
-                        <i class="fa-solid fa-heart "></i>
-                    </span>
-                    <span class="icon-2">
-                        <i class="fa-solid fa-cart-shopping"></i>
-                    </span>
-                    <span class="icon-3">
-                        <i class="fa-solid fa-eye"></i>
-                    </span>
-                    
-                </div><!-- Icon set div is ends here -->
             </div>
-        
         
         <!-- Div for information -->
             <div class="info">
                 <p><b>Kondattam Tissue Shirt & Dhoti Set- Green</b></p>
-                <!-- <p>
-                    <i class="fa-solid fa-star text-warning"></i>
-                    <i class="fa-solid fa-star text-warning"></i>
-                    <i class="fa-solid fa-star text-warning"></i>
-                    <i class="fa-solid fa-star text-warning"></i>
-                    <i class="fa-regular fa-star text-warning"></i>
-                    <span>1 review  | <span><i class="fa-solid fa-comments"></i> 1 question</span></span>
-                </p> -->
                 <p>Rs. 1,575.00</p>
             </div>
+            </a>
         </div><!-- Item 3 ends here -->
+
     <!-- Item 4 -->
         <div class="col-xl-2 col-lg-2 col-md-3 col-sm-3 col-xs-6 d-none d-md-block">
+            <a href="public/product-view.php?id=8" class="product-link">
          <!-- Image 3 -->
             <div class="images d-flex flex-column align-items-center">
-                <img src="images/product-images/blue-shirt/blue-shirt-1.png" alt="Alaya Blue shirt" class="img-top img-fluid">
-                <img src="images/product-images/blue-shirt/blue-shirt-2.png" alt="Alaya Blue shirt" class="img-under img-fluid">
-
-            <!-- Icon set div -->
-                <div class="icon-set ">  
-                    <span class="icon-1">
-                        <i class="fa-solid fa-heart "></i>
-                    </span>
-                    <span class="icon-2">
-                        <i class="fa-solid fa-cart-shopping"></i>
-                    </span>
-                    <span class="icon-3">
-                        <i class="fa-solid fa-eye"></i>
-                    </span>
-                    
-                </div><!-- Icon set div is ends here -->
+                <img src="images/product-images/blue-shirt/blue-shirt-1.webp" alt="Alaya Blue shirt" class="img-top img-fluid">
+                <img src="images/product-images/blue-shirt/blue-shirt-2.webp" alt="Alaya Blue shirt" class="img-under img-fluid">
             </div>
-        
         
         <!-- Div for information -->
             <div class="info">
                 <p><b>Kondattam Grand Tissue Shirt & Dhoti Combo - Blue Hosta</b></p>
-                <!-- <p>
-                    <i class="fa-solid fa-star text-warning"></i>
-                    <i class="fa-solid fa-star text-warning"></i>
-                    <i class="fa-solid fa-star text-warning"></i>
-                    <i class="fa-solid fa-star text-warning"></i>
-                    <i class="fa-solid fa-star text-warning"></i>
-                    <span>1 review  | <span><i class="fa-solid fa-comments"></i> 1 question</span></span>
-                </p> -->
                 <p>Rs. 1,575.00</p>
-            </div>   
+            </div> 
+            </a>  
         </div><!-- Item 4 ends here -->
     <!-- Item 5 -->
         <div class="col-xl-2 col-lg-2  d-none d-md-none d-xl-block d-lg-block">
+            <a href="public/product-view.php?id=10" class="product-link">
         <!-- Image 5 -->
             <div class="images d-flex flex-column align-items-center">
-                <img src="images/product-images/dothi-wide-gold/dothi-wide-gold-1.jpg" alt="" class="img-top img-fluid">
-                <img src="images/product-images/dothi-wide-gold/dothi-wide-gold-1.jpg" alt="" class="img-under img-fluid">
-
-            <!-- Icon set div -->
-                <div class="icon-set ">  
-                    <span class="icon-1">
-                        <i class="fa-solid fa-heart "></i>
-                    </span>
-                    <span class="icon-2">
-                        <i class="fa-solid fa-cart-shopping"></i>
-                    </span>
-                    <span class="icon-3">
-                        <i class="fa-solid fa-eye"></i>
-                    </span>
-                    
-                </div><!-- Icon set div is ends here -->
+                <img src="images/product-images/dothi-wide-gold/dothi-wide-gold-1.webp" alt="" class="img-top img-fluid">
+                <img src="images/product-images/dothi-wide-gold/dothi-wide-gold-1.webp" alt="" class="img-under img-fluid">
             </div>
         
         
         <!-- Div for information -->
             <div class="info">
                 <p><b>Cotton Dhoti Set - Wide Gold</b></p>
-                <!-- <p>
-                    <i class="fa-solid fa-star text-warning"></i>
-                    <i class="fa-solid fa-star text-warning"></i>
-                    <i class="fa-solid fa-star text-warning"></i>
-                    <i class="fa-solid fa-star text-warning"></i>
-                    <i class="fa-regular fa-star text-warning"></i>
-                    <span>1 review  | <span><i class="fa-solid fa-comments"></i> 1 question</span></span>
-                </p> -->
                 <p>Rs. 1,575.00</p>
             </div>
+            </a>
         </div><!-- Item 5 ends here -->
+
     <!-- Item 6 --> 
         <div class="col-xl-2 col-lg-2  d-none d-md-none d-xl-block d-lg-block">
+            <a href="public/product-view.php?id=9" class="product-link">
         <!-- Image 6 -->
             <div class="images d-flex flex-column align-items-center">
                 <img src="images/product-images/dothi-line-gold/dothi-line-gold-1.webp" alt="" class="img-top img-fluid">
-                <img src="images/product-images/dothi-line-gold/dothi-line-gold-2.jpg" alt="" class="img-under img-fluid">
-  
-            <!-- Icon set div -->
-                <div class="icon-set ">  
-                    <span class="icon-1">
-                        <i class="fa-solid fa-heart "></i>
-                    </span>
-                    <span class="icon-2">
-                        <i class="fa-solid fa-cart-shopping"></i>
-                    </span>
-                    <span class="icon-3">
-                        <i class="fa-solid fa-eye"></i>
-                    </span>
-                    
-                </div><!-- Icon set div is ends here -->
+                <img src="images/product-images/dothi-line-gold/dothi-line-gold-2.webp" alt="" class="img-under img-fluid">
             </div>
         
         
         <!-- Div for information -->
             <div class="info">
                 <p><b>Cotton Dhoti Set -Line Gold</b></p>
-                <!-- <p>
-                    <i class="fa-solid fa-star text-warning"></i>
-                    <i class="fa-solid fa-star text-warning"></i>
-                    <i class="fa-solid fa-star text-warning"></i>
-                    <i class="fa-solid fa-star text-warning"></i>
-                    <i class="fa-regular fa-star text-warning"></i>
-                    <span>1 review  | <span><i class="fa-solid fa-comments"></i> 1 question</span></span>
-                </p> -->
                 <p>Rs. 1,575.00</p>
             </div>
+            </a>
         </div><!-- Item 6 ends here -->
      </div>
     </section>
@@ -1118,7 +916,6 @@
 
 <!-- Whatsapp floating icon -->
     
-
     <section class="Whatsapp">
     <!-- Whatsapp chat box  -->
         <div class="whatsapp-chat">

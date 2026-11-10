@@ -61,8 +61,8 @@
 <?php
     require_once __DIR__.'/../config/bootstrap.php';
     require_once __DIR__.'/../database/db_connection.php';
-    require_once __DIR__."/../database/wishlist_db.php";
-    require_once __DIR__."/../database/cart_db.php";
+    require_once __DIR__.'/../database/wishlist_db.php';
+    require_once __DIR__.'/../database/cart_db.php';
     require_once __DIR__.'/../database/session_management.php';
     
 
@@ -157,7 +157,7 @@
             <!-- column 2 for logo -->
                 <div class="col-lg-8 col-md-8 col-sm-8 col-5 d-flex align-middle justify-content-center py-3 ">
                     <a href="../index.php">
-                        <img src="../images/brand/alaya-logo.jpg" alt="Alaya logo image" title="Alaya logo image"  width="150px" class="logo-icon">
+                        <img src="../images/brand/alaya-logo.webp" alt="Alaya logo image" title="Alaya logo image"  width="150px" class="logo-icon">
                     </a>
                 </div>
 

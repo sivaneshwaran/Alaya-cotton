@@ -1,5 +1,5 @@
 <?php 
-
+header("HTTP/1.1 200 OK");
 header('Access-Control-Allow-Headers: Content-Type, Authorization');
 header('Content-type: application/json');
 header('Access-Control-Allow-Methods: GET, POST');
